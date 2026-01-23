@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music</title>
+
+    <style>
+        /* 
+        GENERAL RESET / BASE STYLES
+        We do NOT style div directly.
+        Instead, we create reusable classes.
+        */
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        /* 
+        This class is used for EVERY music section.
+        Reusable = clean + scalable.
+        */
+        .music-section {
+            background-color: blueviolet;
+            color: red;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+
+        /* 
+        Headings inside music sections
+        This is called "descendant selector"
+        */
+        .music-section h2 {
+            margin-top: 0;
+        }
+
+        /* 
+        Rock-specific styling
+        Notice: class name is lowercase
+        */
+        .rock {
+            font-family: cursive;
+            font-weight: bold;
+        }
+
+        /* 
+        Images styling
+        Keeps layout consistent
+        */
+        .music-section img {
+            display: block;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+  <!-- MAIN PAGE TITLE -->
+  <h1>Music Library</h1>
+
+  <!-- MUSIC GENRES LIST -->
+  <ul>
+    <li>Rock</li>
+    <li>Hip-hop/Rap</li>
+    <li>Pop</li>
+    <li>Country</li>
+    <li>Soul</li>
+  </ul>
+
+  <!-- ROCK SECTION -->
+  <!-- 
+  This div has TWO classes:
+  1. music-section → common styles
+  2. rock → specific styles
+  -->
+  <div class="music-section rock">
+     <h2>Rock</h2>
+     <p>
+        Today's rock music blends classic influences with modern styles,
+        spotlighting both legendary acts and emerging artists across
+        alternative, indie, and hard rock genres.
+     </p>
+     <img 
+        src="https://static.vecteezy.com/system/resources/previews/024/569/707/non_2x/rock-music-concert-background-illustration-ai-generative-free-photo.jpg" 
+        alt="Rock concert image" 
+        width="300"
+     >
+  </div>
+
+  <!-- HIP-HOP SECTION -->
+  <div class="music-section">
+    <h2>Hip-hop / Rap</h2>
+    <p>
+        Hip-hop is a global cultural movement that began in the Bronx,
+        New York, in the early 1970s, combining music, dance, visual art,
+        and community expression.
+    </p>
+    <img 
+        src="https://www.pixelstalk.net/wp-content/uploads/2016/05/Hip-Hop-Rap-Music-Wallpaper.jpg" 
+        alt="Hip-hop image" 
+        width="300"
+    >
+  </div>
+
+  <!-- POP SECTION -->
+  <div class="music-section">
+    <h2>Pop</h2>
+    <p>
+        Pop music is known for its catchy melodies, broad accessibility,
+        and ability to adapt trends from various music styles.
+    </p>
+    <img 
+        src="https://singersroom.com/wp-content/uploads/2023/02/Pop-Music-Songs.jpg" 
+        alt="Pop music image" 
+        width="300"
+    >
+
+    <!-- 
+    Audio without autoplay:
+    user controls playback (best practice)
+    -->
+    <audio controls>
+        <source src="mj.mp3" type="audio/mp3">
+    </audio>
+  </div>
+
+</body>
+</html>
