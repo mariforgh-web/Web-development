@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -28,6 +28,12 @@
             color: brown;
             padding: 4px;
         }
+        img {
+            padding: 40px;
+            height: 200px;
+            margin: 10px;
+            border-radius: 100px;
+        }
     </style>
 </head>
 <body>
@@ -46,5 +52,153 @@ NASA.</p>
     <a href="Latestnews.html">Latest space news</a>
     <br>
     <a href="Typeofhuman.html">extra terrestrial exist</a>
+    <div>
+        <img width="300"src="http://eskipaper.com/images/milky-way-wallpaper-2.jpg">
+        <img width="300"src="https://tse1.mm.bing.net/th/id/OIP.49cNDRGP8bJJXr-QJggMjQHaE7?pid=Api&P=0&h=180">
+        <img width="300"src="https://wallpapertag.com/wallpaper/full/4/b/a/91135-popular-outer-space-wallpaper-2560x1600-windows-7.jpg">
+    </div>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Selectors - Space Mission</title>
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #0b0f1a; /* dark space background */
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        h1 {
+            color: #00eaff;
+            text-shadow: 0 0 12px #00eaff, 0 0 20px #00ffff;
+            margin-top: 20px;
+        }
+
+        /* Child selector */
+        ul > li {
+            color: violet;
+            font-weight: bold;
+            font-size: 18px;
+            margin: 8px 0;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        ul > li:hover {
+            color: chocolate;
+            transform: scale(1.05);
+        }
+
+        /* Sibling selector */
+        h1 ~ p {
+            background-color: violet;
+            color: brown;
+            padding: 10px 20px;
+            border-radius: 12px;
+            width: 75%;
+            margin: 12px auto;
+            line-height: 1.5;
+            box-shadow: 0 0 15px rgba(238,130,238,0.5);
+        }
+
+        /* Attribute selector for links */
+        a {
+            color: #ff4d4d;
+            text-decoration: none;
+            display: inline-block;
+            margin: 8px;
+            padding: 6px 12px;
+            font-size: 18px;
+            border-radius: 6px;
+            transition: all 0.3s;
+        }
+
+        a:hover {
+            color: #00eaff;
+            text-shadow: 0 0 8px #00eaff;
+            transform: scale(1.05);
+            background-color: rgba(0, 255, 255, 0.1);
+        }
+
+        /* Image styling */
+        img {
+            padding: 40px; /* KEEP padding as you requested */
+            height: 200px;
+            margin: 10px;
+            border-radius: 100px;
+            box-shadow: 0 0 20px cyan;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px cyan;
+        }
+
+        /* Extra container styling */
+        div {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 800px) {
+            img {
+                height: 150px;
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            ul > li {
+                font-size: 16px;
+            }
+
+            a {
+                font-size: 16px;
+                padding: 4px 8px;
+            }
+
+            h1 ~ p {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Welcome to the Space Ships Mission</h1>
+
+    <ul>
+        <li>Moon missions</li>
+        <li>International Space Station</li>
+        <li>Telescopes and stars</li>
+        <li>Black hole mysteries</li>
+    </ul>
+
+    <p>The Moon is on average about 238,855 miles (384,400 km) away from Earth, though this distance varies because the Moon orbits Earth in an elliptical path NASA. Our astronauts explore new frontiers every day!</p>
+
+    <p>Mars is on average about 140 million miles away from Earth, but the distance varies significantly due to the elliptical orbits of both planets. Future colonization may bring humans closer to the stars.</p>
+
+    <a href="Mission.html">Join our mission</a>
+    <a href="Latestnews.html">Latest space news</a>
+    <a href="Typeofhuman.html">Extra-terrestrial existence</a>
+
+    <div>
+        <img src="http://eskipaper.com/images/milky-way-wallpaper-2.jpg" alt="Milky Way">
+        <img src="https://tse1.mm.bing.net/th/id/OIP.49cNDRGP8bJJXr-QJggMjQHaE7?pid=Api&P=0&h=180" alt="Galaxy">
+        <img src="https://wallpapertag.com/wallpaper/full/4/b/a/91135-popular-outer-space-wallpaper-2560x1600-windows-7.jpg" alt="Space view">
+    </div>
 </body>
 </html>
