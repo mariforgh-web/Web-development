@@ -3,12 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Mission Complete</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #0b0f1a; /* dark space background */
+            color: #ffffff;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #00eaff;
+            text-shadow: 0 0 12px #00eaff, 0 0 20px #00ffff;
+            margin-bottom: 20px;
+        }
+
+        p {
+            background-color: violet;
+            color: brown;
+            padding: 15px 20px;
+            border-radius: 12px;
+            width: 75%;
+            margin: 12px auto;
+            line-height: 1.6;
+            box-shadow: 0 0 15px rgba(238,130,238,0.5);
+        }
+
+        a {
+            color: #ff4d4d;
+            text-decoration: none;
+            display: inline-block;
+            margin: 12px;
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 6px;
+            transition: all 0.3s;
+        }
+
+        a:hover {
+            color: #00eaff;
+            text-shadow: 0 0 8px #00eaff;
+            transform: scale(1.05);
+            background-color: rgba(0, 255, 255, 0.1);
+        }
+
+        @media (max-width: 800px) {
+            p {
+                width: 90%;
+                font-size: 16px;
+            }
+            a {
+                font-size: 16px;
+                padding: 8px 16px;
+            }
+            h1 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
 </head>
 <body>
-    GOOD JOB ASSTORNOT YOU DID IT CLICK ON THE LINK BELLOW TO TRY AGAIN!! 
-    <br>
-    <br>
-        <a href="advancedselecters.html">Join our mission</a>
+    <h1>Mission Complete!</h1>
+
+    <p>Good job, astronaut! You did it. Click the link below to try the mission again and explore space once more!</p>
+
+    <a href="advancedselecters.html">Join Our Mission</a>
 </body>
 </html>

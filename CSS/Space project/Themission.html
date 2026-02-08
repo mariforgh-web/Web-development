@@ -3,17 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Find the Flag</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #0b0f1a; /* dark space background */
+            color: #ffffff;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #00eaff;
+            text-shadow: 0 0 12px #00eaff, 0 0 20px #00ffff;
+            margin-bottom: 20px;
+        }
+
+        p {
+            background-color: violet;
+            color: brown;
+            padding: 15px 20px;
+            border-radius: 12px;
+            width: 75%;
+            margin: 12px auto;
+            line-height: 1.6;
+            box-shadow: 0 0 15px rgba(238,130,238,0.5);
+        }
+
+        img {
+            width: 300px;
+            margin: 20px 0;
+            border-radius: 20px;
+            box-shadow: 0 0 25px cyan;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px cyan;
+        }
+
+        a {
+            color: #ff4d4d;
+            text-decoration: none;
+            display: inline-block;
+            margin: 12px;
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 6px;
+            transition: all 0.3s;
+        }
+
+        a:hover {
+            color: #00eaff;
+            text-shadow: 0 0 8px #00eaff;
+            transform: scale(1.05);
+            background-color: rgba(0, 255, 255, 0.1);
+        }
+
+        @media (max-width: 800px) {
+            p {
+                width: 90%;
+                font-size: 16px;
+            }
+            img {
+                width: 90%;
+                margin: 15px 0;
+            }
+            a {
+                font-size: 16px;
+                padding: 8px 16px;
+            }
+            h1 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
 </head>
 <body>
-    Find it
-    <br>
-    <br>
-        <img src="https://img.freepik.com/premium-photo/nasa-curiosity-rover-mars-red-planet-moon-usa-flag-mars-futuristic-space-exploration-terraform_1041523-87.jpg" alt="description of image" width="300">
-        <br>
-        IF U FOUND IT GO AND CLICK ON THE LINK AND WHEN U DO THAT MEANS UR GOING TO EARTH AGAIN.
-        <BR>
-            <BR>
-                <a href="Itsover.html">The last mission has been complete</a>
+    <h1>Find the Flag on Mars</h1>
+
+    <p>
+        Look carefully and find the hidden flag. Once you find it, click the link below to return to Earth. Good luck, astronaut!
+    </p>
+
+    <img src="https://img.freepik.com/premium-photo/nasa-curiosity-rover-mars-red-planet-moon-usa-flag-mars-futuristic-space-exploration-terraform_1041523-87.jpg" alt="Curiosity Rover on Mars">
+
+    <a href="Itsover.html">The Last Mission is Complete</a>
 </body>
 </html>
