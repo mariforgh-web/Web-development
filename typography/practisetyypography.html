@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Styled Text Examples</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <style>
+        body {
+            background: linear-gradient(to right, #667eea, #764ba2);
+            padding-top: 40px;
+        }
+
+        .box {
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            color: white;
+        }
+
+        /* Different background colors for each section */
+        .box:nth-child(1) {
+            background-color: #1abc9c;
+        }
+
+        .box:nth-child(2) {
+            background-color: #3498db;
+        }
+
+        .box:nth-child(3) {
+            background-color: #e67e22;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        mark {
+            background-color: #ffeb3b;
+            padding: 3px 6px;
+            border-radius: 4px;
+        }
+
+        code {
+            background-color: #272822;
+            color: #f8f8f2;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Subscript and Superscript Section -->
+    <div class="box">
+        <h2>Scientific & Mathematical Notation</h2>
+        <p>
+            Carbon dioxide is written as CO<sub>2</sub>.
+        </p>
+        <p>
+            A squared value is written as a<sup>2</sup>.
+        </p>
+    </div>
+
+    <!-- Highlight Section -->
+    <div class="box">
+        <h2>Text Highlighting</h2>
+        <p>
+            You can use the <mark>mark element</mark> to emphasize important text within a paragraph.
+        </p>
+    </div>
+
+    <!-- Code Section -->
+    <div class="box">
+        <h2>Inline Code Elements</h2>
+        <p>
+            Small pieces of code can be displayed using the <code>code</code> tag.
+        </p>
+        <p>
+            Common structural HTML elements include 
+            <code>&lt;span&gt;</code>, 
+            <code>&lt;section&gt;</code>, and 
+            <code>&lt;div&gt;</code>, 
+            which are used to organize content on a webpage.
+        </p>
+    </div>
+
+</div>
+
+</body>
+</html>
