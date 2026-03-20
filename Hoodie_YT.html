@@ -3,38 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hoodie</title>
+    <title>Hoodie Giveaway</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #74ebd5, #ACB6E5);
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 40px;
+            color: #333;
+        }
+
+        table {
+            width: 80%;
+            margin: 30px auto;
+            border-collapse: collapse;
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+        }
+
+        th {
+            background-color: #00bcd4;
+            color: white;
+            padding: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+            transition: 0.3s;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+    </style>
 </head>
+
 <body>
-    <h1>The hoodie give away size.</h1>
-    <table style="width: 80%;
-        margin: 0 auto;
-        border-collapse: collapse;
-        background-color: #ffffff;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+
+    <h1>🎁 Hoodie Giveaway Sizes</h1>
+
+    <table>
         <thead>
             <tr>
-                <th style="background-color: aqua;padding: 10px; border: 1px solid #ddd;">Color</th>
-                <th style="background-color: aqua;padding: 10px; border: 1px solid #ddd;">Size</th>
-                <th style="background-color: aqua;padding: 10px; border: 1px solid #ddd;">Style</th>
+                <th>Color</th>
+                <th>Size</th>
+                <th>Season</th>
             </tr>
         </thead>
+
         <tbody>
             <tr>
-                <td style="padding: 10px; border: 1px solid #ddd;">Red&orange</td>
-                <td style="padding: 10px; border: 1px solid #ddd;">small</td>
-                <td style="padding: 10px; border: 1px solid #ddd;">spring&summer</td>
+                <td>Red & Orange</td>
+                <td>Small</td>
+                <td>Spring & Summer</td>
             </tr>
             <tr>
-                <td style="padding: 10px; border: 1px solid #ddd;">White</td>
-                <td style="padding: 10px; border: 1px solid #ddd;">medium</td>
-                <td style="padding: 10px; border: 1px solid #ddd;">Winter&Fall</td>
+                <td>White</td>
+                <td>Medium</td>
+                <td>Fall & Winter</td>
             </tr>
             <tr>
-                <td></td>
-                <td style="padding: 10px; border: 1px solid #ddd;">Large</td>
+                <td>Black</td>
+                <td>Large</td>
+                <td>All Seasons</td>
             </tr>
         </tbody>
     </table>
+
 </body>
 </html>

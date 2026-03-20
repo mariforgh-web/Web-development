@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Math Quiz Game 🎉</title>
+</head>
+<body>
+
+<h2>🎮 Math Quiz (5 Questions)</h2>
+
+<p id="question"></p>
+<input type="number" id="answer" placeholder="Your answer">
+<br><br>
+
+<button onclick="checkAnswer()">Submit ✅</button>
+
+<p id="result"></p>
+
+<button id="nextBtn" onclick="nextQuestion()" style="display:none;">Next ➡️</button>
+
+<script>
+    let num1, num2;
+    let score = 0;
+    let questionCount = 0;
+
+    // 🎲 Make a new question
+    function generateQuestion() {
+        num1 = Math.floor(Math.random() * 10) + 1;
+        num2 = Math.floor(Math.random() * 10) + 1;
+
+        document.getElementById("question").innerHTML =
+            "What is " + num1 + " + " + num2 + "?";
+
+        document.getElementById("answer").value = "";
+    }
+
+    // ✅ Check answer
+    function checkAnswer() {
+        let userAnswer = Number(document.getElementById("answer").value);
+        let correct = num1 + num2;
+
+        questionCount++;
+
+        if (userAnswer === correct) {
+            score++;
+            document.getElementById("result").innerHTML =
+                "🎉 Good job! " + score + "/5";
+        } else {
+            document.getElementById("result").innerHTML =
+                "😢 Wrong! Score: " + score + "/5 (Answer was " + correct + ")";
+        }
+
+        // Show next button
+        document.getElementById("nextBtn").style.display = "inline";
+
+        // Hide submit button after answering
+        document.querySelector("button").style.display = "none";
+    }
+
+    // ➡️ Go to next question
+    function nextQuestion() {
+        if (questionCount < 5) {
+            generateQuestion();
+
+            document.getElementById("result").innerHTML = "";
+            document.getElementById("nextBtn").style.display = "none";
+
+            // Show submit button again
+            document.querySelector("button").style.display = "inline";
+        } else {
+            document.getElementById("question").innerHTML =
+                "🎉 Game Over! Final Score: " + score + "/5";
+            
+            document.getElementById("result").innerHTML = "";
+            document.getElementById("nextBtn").style.display = "none";
+        }
+    }
+
+    // Start first question
+    generateQuestion();
+</script>
+
+</body>
+</html>
