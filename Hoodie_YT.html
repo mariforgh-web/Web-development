@@ -55,7 +55,7 @@
 
 <body>
 
-    <h1>🎁 Hoodie Giveaway Sizes</h1>
+    <h1>🎁 Hoodie Give away Sizes</h1>
 
     <table>
         <thead>
@@ -84,6 +84,28 @@
             </tr>
         </tbody>
     </table>
+<hr>
 
+<h3>Enter Code</h3>
+
+<input type="text" id="codeInput" placeholder="Enter code">
+<button onclick="checkCode()">Submit Code</button>
+
+<p id="result"></p>
+
+<script>
+function checkCode() {
+    let userCode = document.getElementById("codeInput").value.trim();
+
+    // 👉 YOU will change these later
+    let codes = ["JackwFandL_YT", "Shadow67", "Final200", "Mari137"];
+
+    if (codes.includes(userCode)) {
+        document.getElementById("result").innerHTML = "Code accepted";
+    } else {
+        document.getElementById("result").innerHTML = "Wrong code";
+    }
+}
+</script>
 </body>
 </html>

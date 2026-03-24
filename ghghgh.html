@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hoodie Giveaway</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #74ebd5, #ACB6E5);
+            margin: 0;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 40px;
+            color: #333;
+        }
+
+        table {
+            width: 80%;
+            margin: 30px auto;
+            border-collapse: collapse;
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+        }
+
+        th {
+            background-color: #00bcd4;
+            color: white;
+            padding: 12px;
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        input {
+            padding: 10px;
+            border-radius: 6px;
+            border: none;
+            width: 200px;
+            margin-top: 10px;
+        }
+
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 6px;
+            background-color: #00bcd4;
+            color: white;
+            cursor: pointer;
+            margin-left: 10px;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #0097a7;
+        }
+
+        #result {
+            margin-top: 15px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .success {
+            color: green;
+        }
+
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>🎁 Hoodie Sell Sizes JackwF&L merch</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Color</th>
+            <th>Size</th>
+            <th>Season</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td>Red & Orange</td>
+            <td>Small</td>
+            <td>Spring & Summer</td>
+        </tr>
+        <tr>
+            <td>White</td>
+            <td>Medium</td>
+            <td>Fall & Winter</td>
+        </tr>
+        <tr>
+            <td>Black</td>
+            <td>Large</td>
+            <td>All Seasons</td>
+        </tr>
+    </tbody>
+</table>
+
+<hr>
+
+<h3>Enter Code</h3>
+
+<input type="text" id="codeInput" placeholder="Enter code">
+<button onclick="checkCode()">Submit Code</button>
+
+<p id="result"></p>
+
+<script>
+// Valid codes
+const validCodes = ["jackwfandl_yt", "shadow67", "final200", "mari137"];
+
+// Random rewards
+const rewards = [
+    "🎉 You got a Red & Orange Small hoodie!",
+    "🔥 Lucky! You got a White Medium hoodie!",
+    "😎 Nice! You got a Black Large hoodie!",
+    "✨ Bonus win! Another Red & Orange Small hoodie!",
+    "💯 Clean pickup! White Medium hoodie!",
+    "🚀 Big win! Black Large hoodie!"
+];
+
+function checkCode() {
+    let input = document.getElementById("codeInput");
+    let result = document.getElementById("result");
+
+    let userCode = input.value.trim().toLowerCase();
+
+    if (!userCode) {
+        result.textContent = "Please enter a code";
+        result.className = "error";
+        return;
+    }
+
+    if (validCodes.includes(userCode)) {
+        // Pick random reward
+        let randomReward = rewards[Math.floor(Math.random() * rewards.length)];
+
+        result.textContent = randomReward;
+        result.className = "success";
+
+        input.value = "";
+    } else {
+        result.textContent = "❌ Wrong code, try again";
+        result.className = "error";
+    }
+}
+
+// Enter key support
+document.getElementById("codeInput").addEventListener("keypress", function(e) {
+    if (e.key === "Enter") {
+        checkCode();
+    }
+});
+</script>
+
+</body>
+</html>
