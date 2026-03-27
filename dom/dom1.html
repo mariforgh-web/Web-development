@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>REAL TIME VALIDATION USING JS</h1>
+    <hr>
+
+    <div class="box">
+        <form id="loginForm">
+            <div class="row">
+                <label>Email:</label>
+                <input type="text" id="email" placeholder="Myname@gmail.com">
+    </div>
+
+    <div class="row">
+        <label>Password:</label>
+        <input type="password" placeholder="........">
+    </div>
+
+    <div class="row">
+        <label>Age:</label>
+        <input type="number" id="age">
+
+        <button type="submit">login</button>
+    </form>
+    </div>
+
+    <p id="mesage"></p>
+
+    <script>
+        function validate(e){
+            e.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const pass = document.getElementById('password').value; 
+            const age = document.getElementById('age').value; 
+            const msgBox = document.getElementById('message').value;
+            
+            let message = '';
+            if (email === '') {
+                message = 'Please enter a email.';
+                msgBox.style.color = 'red';
+            } else if (pass === '') {
+                message = 'Please enter a password.';
+                msgBox.style.color = 'red';
+            } else if (age === '') {
+                message = 'Please enter your age.';
+                msgBox.style.color = 'red';
+            } else {
+                message = 'Login successful!';
+                msgBox.style.color = 'green';
+            }
+            msgBox.innerHTML = message;
+        }
+
+        //Run validate when Login is clicked
+        document.getElementById("loginForm").onsubmit = validate;
+
+        //Run-time validation (Like the screenshots)
+        document.getElementById("email").oninput = () => validate({ preventDefault: () => {}
+        });
+        document.getElementById("password").oninput = () => validate({ preventDefault: () => {}
+        {} });
+        document.getElementById("age").oninput = () => validate({ preventDefault: () => {} });
+
+
+
+
+
+    </script>
+</body>
+</html>
