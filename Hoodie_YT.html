@@ -3,79 +3,107 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hoodie Sell - JackwFandL_YT</title>
+<title>Clothing Sell - JackwFandL_YT</title>
 <style>
+/* Animated YouTube-style gradient background */
 body {
-    font-family: Arial, sans-serif;
     margin: 0;
+    font-family: Arial, sans-serif;
     text-align: center;
-    background: linear-gradient(to right, #74ebd5, #ACB6E5);
+    background: linear-gradient(-45deg, #ff0000, #ff4d4d, #d90000, #ff1a1a);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    color: white;
+    position: relative;
+    overflow-x: hidden;
 }
 
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* F&L background watermark - bright white */
+body::before {
+    content: "F&L";
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 200px;
+    font-weight: bold;
+    color: white; /* bright white */
+    z-index: 0;
+    pointer-events: none;
+    user-select: none;
+}
+
+/* Page content on top */
+#mainContent, .cart, #fullSubscribe {
+    position: relative;
+    z-index: 1;
+}
+
+/* Page styling */
 h1 { margin-top: 40px; }
-h6 { margin: 5px 0; color: #333; }
+h6 { margin: 5px 0; color: white; }
 
 table {
     width: 80%;
     margin: 30px auto;
     border-collapse: collapse;
-    background-color: #fff;
+    background-color: rgba(255,255,255,0.95);
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    color: #000;
 }
-
-th {
-    background-color: #00bcd4;
-    color: white;
-    padding: 12px;
-}
-
-td {
-    padding: 12px;
-    border-bottom: 1px solid #ddd;
-}
-
+th, td { padding: 12px; }
+th { background-color: #ff0000; color: white; }
 tr:hover { background-color: #f5f5f5; }
 
-input {
-    padding: 10px;
+select {
+    padding: 8px;
     border-radius: 6px;
-    border: none;
-    width: 200px;
-    margin-top: 10px;
+    border: 1px solid #ccc;
 }
 
 button {
-    padding: 10px 15px;
+    padding: 8px 12px;
     border: none;
     border-radius: 6px;
-    background-color: #00bcd4;
+    background-color: #ff0000;
     color: white;
     cursor: pointer;
-    margin-left: 10px;
+    margin-left: 5px;
     transition: 0.3s;
 }
+button:hover { background-color: #d90000; }
 
-button:hover { background-color: #0097a7; }
+#result { margin-top: 15px; font-weight: bold; font-size: 18px; }
+.success { color: #00ff00; }
+.error { color: #ffff00; }
 
-#result {
-    margin-top: 15px;
-    font-weight: bold;
-    font-size: 18px;
+.cart {
+    background: rgba(255,255,255,0.95);
+    width: 80%;
+    margin: 20px auto;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+    text-align: left;
+    color: #000;
 }
+.remove { background: red; margin-left: 10px; }
 
-.success { color: green; }
-.error { color: red; }
-
-/* Full page SUBSCRIBE screen */
 #fullSubscribe {
     position: fixed;
     top:0;
     left:0;
     width:100%;
     height:100%;
-    background-color:red;
+    background:red;
     color:white;
     font-size:100px;
     font-weight:bold;
@@ -83,85 +111,151 @@ button:hover { background-color: #0097a7; }
     justify-content:center;
     align-items:center;
     z-index:9999;
-    display:none; /* hidden by default */
+    display:none;
 }
 </style>
 </head>
 <body>
 
 <div id="mainContent">
-<h1>🧥 Hoodie Sell - JackwFandL_YT</h1>
+<h1>👕 Clothing Sell - JackwFandL_YT</h1>
 <h6>code67</h6>
 <h6>a secret code</h6>
 
 <table>
-    <thead>
-        <tr>
-            <th>Color</th>
-            <th>Size</th>
-            <th>Season</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr><td>Red & Orange</td><td>Small</td><td>Spring & Summer</td></tr>
-        <tr><td>White</td><td>Medium</td><td>Fall & Winter</td></tr>
-        <tr><td>Black</td><td>Large</td><td>All Seasons</td></tr>
-    </tbody>
+<thead>
+<tr>
+<th>Product</th>
+<th>Size</th>
+<th>Price</th>
+<th>Buy</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Red & Orange Hoodie</td>
+<td>
+  <select id="size1">
+    <option>Small</option>
+    <option>Medium</option>
+    <option>Large</option>
+  </select>
+</td>
+<td>$25</td>
+<td><button onclick="addToCart('Red & Orange Hoodie',25,'size1')">Add</button></td>
+</tr>
+
+<tr>
+<td>White T-Shirt</td>
+<td>
+  <select id="size2">
+    <option>Small</option>
+    <option>Medium</option>
+    <option>Large</option>
+  </select>
+</td>
+<td>$25</td>
+<td><button onclick="addToCart('White T-Shirt',25,'size2')">Add</button></td>
+</tr>
+
+<tr>
+<td>Black Hoodie</td>
+<td>
+  <select id="size3">
+    <option>Small</option>
+    <option>Medium</option>
+    <option>Large</option>
+  </select>
+</td>
+<td>$25</td>
+<td><button onclick="addToCart('Black Hoodie',25,'size3')">Add</button></td>
+</tr>
+</tbody>
 </table>
 
-<hr>
+<!-- CART -->
+<div class="cart">
+<h2>Your Cart 🛒</h2>
+<ul id="cartList"></ul>
+<h3 id="total">Total: $0</h3>
+</div>
 
+<hr>
 <h3>Enter Code</h3>
 <input type="text" id="codeInput" placeholder="Enter code">
 <button onclick="checkCode()">Submit</button>
 <p id="result"></p>
 </div>
 
-<!-- FULL SCREEN SUBSCRIBE -->
 <div id="fullSubscribe">SUBSCRIBE!</div>
 
 <script>
+// Codes & rewards
 const validCodes = ["jackwfandl_yt", "shadow67", "final200", "mari137", "secret1"];
 const rewards = [
     "🎉 You got a Red & Orange Small hoodie!",
-    "🔥 Lucky! You got a White Medium hoodie!",
+    "🔥 Lucky! You got a White Medium T-Shirt!",
     "😎 You got a Black Large hoodie!",
     "✨ Bonus win! Another Red & Orange Small hoodie!",
-    "💯 Clean pickup! White Medium hoodie!",
+    "💯 Clean pickup! White Medium T-Shirt!",
     "🚀 Big win! Black Large hoodie!"
 ];
 
+// Cart
+let cart = [];
+let total = 0;
+
+function addToCart(name, price, sizeId){
+    const size = document.getElementById(sizeId).value;
+    cart.push({name, price, size});
+    total += price;
+    updateCart();
+}
+
+function removeItem(i){
+    total -= cart[i].price;
+    cart.splice(i,1);
+    updateCart();
+}
+
+function updateCart(){
+    const list = document.getElementById("cartList");
+    list.innerHTML = "";
+    cart.forEach((item,i)=>{
+        const li = document.createElement("li");
+        li.innerHTML = `${item.name} (${item.size}) - $${item.price} 
+        <button class="remove" onclick="removeItem(${i})">X</button>`;
+        list.appendChild(li);
+    });
+    document.getElementById("total").textContent = "Total: $" + total;
+}
+
+// Code system
 function checkCode() {
     const input = document.getElementById("codeInput");
     const result = document.getElementById("result");
     const code = input.value.trim().toLowerCase();
 
-    if (!code) {
+    if(!code){
         result.textContent = "Please enter a code";
         result.className = "error";
         return;
     }
 
-    // SECRET CODE → code67
-    if (code === "code67") {
-        // hide all main content
+    if(code === "code67"){
         document.getElementById("mainContent").style.display = "none";
-
-        // show full screen subscribe
         const fullScreen = document.getElementById("fullSubscribe");
         fullScreen.style.display = "flex";
 
-        // wait 2 seconds then go to channel
-        setTimeout(() => {
+        setTimeout(()=>{
             window.open("https://www.youtube.com/@JackwFandL-m1", "_blank");
             fullScreen.style.display = "none";
             document.getElementById("mainContent").style.display = "block";
-        }, 2000);
+        },2000);
         return;
     }
 
-    // NORMAL CODES
-    if (validCodes.includes(code)) {
+    if(validCodes.includes(code)){
         const randomReward = rewards[Math.floor(Math.random() * rewards.length)];
         result.textContent = randomReward;
         result.className = "success";
@@ -172,11 +266,10 @@ function checkCode() {
     }
 }
 
-// ENTER key support
-document.getElementById("codeInput").addEventListener("keydown", function(e) {
-    if (e.key === "Enter") checkCode();
+// Enter key
+document.getElementById("codeInput").addEventListener("keydown", function(e){
+    if(e.key === "Enter") checkCode();
 });
 </script>
-
 </body>
 </html>
