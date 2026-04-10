@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Clothing Sell - JackwFandL_YT</title>
 <style>
-/* Animated YouTube-style gradient background */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -24,7 +23,6 @@ body {
     100% { background-position: 0% 50%; }
 }
 
-/* F&L background watermark - bright white */
 body::before {
     content: "F&L";
     position: fixed;
@@ -33,19 +31,17 @@ body::before {
     transform: translate(-50%, -50%);
     font-size: 200px;
     font-weight: bold;
-    color: white; /* bright white */
+    color: white;
     z-index: 0;
     pointer-events: none;
     user-select: none;
 }
 
-/* Page content on top */
 #mainContent, .cart, #fullSubscribe {
     position: relative;
     z-index: 1;
 }
 
-/* Page styling */
 h1 { margin-top: 40px; }
 h6 { margin: 5px 0; color: white; }
 
@@ -59,6 +55,7 @@ table {
     box-shadow: 0 6px 15px rgba(0,0,0,0.2);
     color: #000;
 }
+
 th, td { padding: 12px; }
 th { background-color: #ff0000; color: white; }
 tr:hover { background-color: #f5f5f5; }
@@ -79,6 +76,7 @@ button {
     margin-left: 5px;
     transition: 0.3s;
 }
+
 button:hover { background-color: #d90000; }
 
 #result { margin-top: 15px; font-weight: bold; font-size: 18px; }
@@ -95,6 +93,7 @@ button:hover { background-color: #d90000; }
     text-align: left;
     color: #000;
 }
+
 .remove { background: red; margin-left: 10px; }
 
 #fullSubscribe {
@@ -113,11 +112,24 @@ button:hover { background-color: #d90000; }
     z-index:9999;
     display:none;
 }
+
+/* NEW TEXT BOX */
+.shop-info {
+    width: 80%;
+    margin: 30px auto;
+    padding: 15px;
+    background: rgba(255,255,255,0.95);
+    color: #000;
+    border-radius: 10px;
+    text-align: left;
+}
 </style>
 </head>
+
 <body>
 
 <div id="mainContent">
+
 <h1>👕 Clothing Sell - JackwFandL_YT</h1>
 <h6>code67</h6>
 <h6>a secret code</h6>
@@ -131,15 +143,16 @@ button:hover { background-color: #d90000; }
 <th>Buy</th>
 </tr>
 </thead>
+
 <tbody>
 <tr>
 <td>Red & Orange Hoodie</td>
 <td>
-  <select id="size1">
-    <option>Small</option>
-    <option>Medium</option>
-    <option>Large</option>
-  </select>
+<select id="size1">
+<option>Small</option>
+<option>Medium</option>
+<option>Large</option>
+</select>
 </td>
 <td>$25</td>
 <td><button onclick="addToCart('Red & Orange Hoodie',25,'size1')">Add</button></td>
@@ -148,11 +161,11 @@ button:hover { background-color: #d90000; }
 <tr>
 <td>White T-Shirt</td>
 <td>
-  <select id="size2">
-    <option>Small</option>
-    <option>Medium</option>
-    <option>Large</option>
-  </select>
+<select id="size2">
+<option>Small</option>
+<option>Medium</option>
+<option>Large</option>
+</select>
 </td>
 <td>$20</td>
 <td><button onclick="addToCart('White T-Shirt',20,'size2')">Add</button></td>
@@ -161,11 +174,11 @@ button:hover { background-color: #d90000; }
 <tr>
 <td>Black Hoodie</td>
 <td>
-  <select id="size3">
-    <option>Small</option>
-    <option>Medium</option>
-    <option>Large</option>
-  </select>
+<select id="size3">
+<option>Small</option>
+<option>Medium</option>
+<option>Large</option>
+</select>
 </td>
 <td>$35</td>
 <td><button onclick="addToCart('Black Hoodie',35,'size3')">Add</button></td>
@@ -173,7 +186,6 @@ button:hover { background-color: #d90000; }
 </tbody>
 </table>
 
-<!-- CART -->
 <div class="cart">
 <h2>Your Cart 🛒</h2>
 <ul id="cartList"></ul>
@@ -181,95 +193,102 @@ button:hover { background-color: #d90000; }
 </div>
 
 <hr>
+
 <h3>Enter Code</h3>
 <input type="text" id="codeInput" placeholder="Enter code">
 <button onclick="checkCode()">Submit</button>
 <p id="result"></p>
+
+<!-- NEW SHOP TEXT -->
+<div class="shop-info">
+<p>
+Hello welcome to the JackwF&L shop we would love to help u with anything and WE GOT SOME SECRET CODES FOR SOME SHIRTS TOO anyways im a youtuber named JackwF&L these are about this website we got secret codes that will give u free shirts as i said We also got a secret code on the top go check and enter in the code area we sell F&L shirts that we made and some plushies too but not yet their not out yet buy ANYTHING YOU WANT , DO NOT FORGET SOMETIMES WE PUT LIMITED STUFF AND WE MAKE THE PRICES LOWER TOO.
+</p>
+</div>
+
 </div>
 
 <div id="fullSubscribe">SUBSCRIBE!</div>
 
 <script>
-// Codes & rewards
 const validCodes = ["jackwfandl_yt", "shadow67", "final200", "mari137", "secret1"];
+
 const rewards = [
-    "🎉 You got a Red & Orange Small hoodie!",
-    "🔥 Lucky! You got a White Medium T-Shirt!",
-    "😎 You got a Black Large hoodie!",
-    "✨ Bonus win! Another Red & Orange Small hoodie!",
-    "💯 Clean pickup! White Medium T-Shirt!",
-    "🚀 Big win! Black Large hoodie!"
+"🎉 You got a Red & Orange Small hoodie!",
+"🔥 Lucky! You got a White Medium T-Shirt!",
+"😎 You got a Black Large hoodie!",
+"✨ Bonus win! Another Red & Orange Small hoodie!",
+"💯 Clean pickup! White Medium T-Shirt!",
+"🚀 Big win! Black Large hoodie!"
 ];
 
-// Cart
 let cart = [];
 let total = 0;
 
 function addToCart(name, price, sizeId){
-    const size = document.getElementById(sizeId).value;
-    cart.push({name, price, size});
-    total += price;
-    updateCart();
+const size = document.getElementById(sizeId).value;
+cart.push({name, price, size});
+total += price;
+updateCart();
 }
 
 function removeItem(i){
-    total -= cart[i].price;
-    cart.splice(i,1);
-    updateCart();
+total -= cart[i].price;
+cart.splice(i,1);
+updateCart();
 }
 
 function updateCart(){
-    const list = document.getElementById("cartList");
-    list.innerHTML = "";
-    cart.forEach((item,i)=>{
-        const li = document.createElement("li");
-        li.innerHTML = `${item.name} (${item.size}) - $${item.price} 
-        <button class="remove" onclick="removeItem(${i})">X</button>`;
-        list.appendChild(li);
-    });
-    document.getElementById("total").textContent = "Total: $" + total;
+const list = document.getElementById("cartList");
+list.innerHTML = "";
+cart.forEach((item,i)=>{
+const li = document.createElement("li");
+li.innerHTML = `${item.name} (${item.size}) - $${item.price} 
+<button class="remove" onclick="removeItem(${i})">X</button>`;
+list.appendChild(li);
+});
+document.getElementById("total").textContent = "Total: $" + total;
 }
 
-// Code system
 function checkCode() {
-    const input = document.getElementById("codeInput");
-    const result = document.getElementById("result");
-    const code = input.value.trim().toLowerCase();
+const input = document.getElementById("codeInput");
+const result = document.getElementById("result");
+const code = input.value.trim().toLowerCase();
 
-    if(!code){
-        result.textContent = "Please enter a code";
-        result.className = "error";
-        return;
-    }
-
-    if(code === "code67"){
-        document.getElementById("mainContent").style.display = "none";
-        const fullScreen = document.getElementById("fullSubscribe");
-        fullScreen.style.display = "flex";
-
-        setTimeout(()=>{
-            window.open("https://www.youtube.com/@JackwFandL-m1", "_blank");
-            fullScreen.style.display = "none";
-            document.getElementById("mainContent").style.display = "block";
-        },2000);
-        return;
-    }
-
-    if(validCodes.includes(code)){
-        const randomReward = rewards[Math.floor(Math.random() * rewards.length)];
-        result.textContent = randomReward;
-        result.className = "success";
-        input.value = "";
-    } else {
-        result.textContent = "❌ Wrong code, try again";
-        result.className = "error";
-    }
+if(!code){
+result.textContent = "Please enter a code";
+result.className = "error";
+return;
 }
 
-// Enter key
+if(code === "code67"){
+document.getElementById("mainContent").style.display = "none";
+const fullScreen = document.getElementById("fullSubscribe");
+fullScreen.style.display = "flex";
+
+setTimeout(()=>{
+window.open("https://www.youtube.com/@JackwFandL-m1", "_blank");
+fullScreen.style.display = "none";
+document.getElementById("mainContent").style.display = "block";
+},2000);
+return;
+}
+
+if(validCodes.includes(code)){
+const randomReward = rewards[Math.floor(Math.random() * rewards.length)];
+result.textContent = randomReward;
+result.className = "success";
+input.value = "";
+} else {
+result.textContent = "❌ Wrong code, try again";
+result.className = "error";
+}
+}
+
 document.getElementById("codeInput").addEventListener("keydown", function(e){
-    if(e.key === "Enter") checkCode();
+if(e.key === "Enter") checkCode();
 });
 </script>
+
 </body>
 </html>
