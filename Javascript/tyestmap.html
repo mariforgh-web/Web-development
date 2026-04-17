@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Multiply every element in the array with 50 and age:</p>
+
+
+    <p id="product_value"></p>
+
+    <script>
+        var numbers = [11, 10, 11, 12, 11];
+        var name = ["Parham1", "Mahdi", "Janyar", "scotty", "Adrian"];
+
+        function idk(num) {
+            return num * 50;
+        }
+        function Parham(num) { 
+            return num * 50;
+        }
+
+        var newage = numbers.map(Parham);
+        var newname = numbers.map(idk);
+        document.getElementById("product_value").innerHTML = name 
+        document.getElementById("product_value").innerHTML += "<br>" + newage;
+        //document.getElementById("product_value").innerHTML = newname
+    </script>
+
+</body>
+</html>

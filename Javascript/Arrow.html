@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>JavaScript Arrow Function</h2>
+
+    <p>This example shows an Arrow Function with a parameter.</p>
+
+    <p id="result"></p>
+    <p id="Parham_multiply"></p>
+    <p id="Parham_divide"></p>
+    <p id="Parham_power"></p>
+
+    <script>
+        const add = (a,b) => a + b;
+        const Multiply = (a,b) => a * b;
+        const divide = (a,b) => a / b;
+        const power = (a,b) => a ** b;
+
+        document.getElementById("result").innerHTML = add(4,6)
+        document.getElementById("Parham_multiply").innerHTML = Multiply(4,6) 
+        document.getElementById("Parham_divide").innerHTML = divide(4,6)
+        document.getElementById("Parham_power").innerHTML = power(4,6)
+    </script>
+
+</body>
+</html>
