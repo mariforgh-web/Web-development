@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Convert a JavaScirpt object into a JSON string, and send it to the server.</h2>
+
+    <p id="result"></p>
+    <p id="MyJSON"></p>
+    <p id="NewOBJ"></p>
+
+    <script>
+        var myObj = { name: "Riya", age: 12, grade: 7};
+
+        var myJSON = JSON.stringify(myObj); // convert object to JSON for sneding data
+
+        var newObj = JSON.parse(myJSON); // converts JSON into object while receiving data
+        
+        document.getElementById("NewOBJ").innerHTML = newObj;
+        document.getElementById("result").innerHTML = newObj.name;
+        document.getElementById("MyJSON").innerHTML = myJSON;
+    </script>
+</body>
+</html>

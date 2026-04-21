@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Async vs Normal Function Demo</title>
+</head>
+<body>
+
+    <h2>JavaScript: Normal vs Async/Await Visual Test</h2>
+
+    <button onclick="normalFunction()">Run Normal Function</button>
+    <button onclick="asyncFunction()">Run Async Function</button>
+
+    <h3>Output:</h3>
+    <p id="result"></p>
+
+    <script>
+        // Helper function to display result on screen
+        function display(text) {
+            document.getElementById("result").innerHTML = text;
+        }
+
+        // -----------------------------
+        // 1️⃣ NORMAL FUNCTION (NO WAITING)
+        // -----------------------------
+        function normalFunction() {
+            display("Normal function started...");
+
+            // This runs instantly (no delay)
+            let result = 5 + 20;
+
+            display("Normal result: " + result);
+        }
+
+        // -----------------------------
+        // Helper function to create delay (simulates server/API)
+        // -----------------------------
+        function wait(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        // -----------------------------
+        // 2️⃣ ASYNC / AWAIT FUNCTION
+        // -----------------------------
+        async function asyncFunction() {
+            display("Async function started... ⏳ waiting 3 seconds");
+
+            // ⏳ Pause here without freezing browser
+            await wait(3000);
+
+            let result = 5 + 20;
+
+            display("Async result: " + result);
+        }
+    </script>
+
+</body>
+</html>

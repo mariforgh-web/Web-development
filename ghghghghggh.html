@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clothing Sell - JackwFandL_YT</title>
+
+<style>
+
+/* 🎨 Background animation */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background: linear-gradient(-45deg, #ff0000, #ff4d4d, #d90000, #ff1a1a);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    color: white;
+}
+
+/* 🔄 animation */
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* 💧 watermark */
+body::before {
+    content: "F&L";
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 200px;
+    font-weight: bold;
+    color: white;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* content layer */
+#mainContent, .cart, #fullSubscribe {
+    position: relative;
+    z-index: 1;
+}
+
+/* 🔎 search */
+#searchInput {
+    padding: 10px;
+    width: 250px;
+    border-radius: 6px;
+    border: none;
+    margin-top: 15px;
+}
+
+/* 🛍️ table */
+table {
+    width: 80%;
+    margin: 30px auto;
+    border-collapse: collapse;
+    background-color: rgba(255,255,255,0.95);
+    border-radius: 10px;
+    color: black;
+}
+
+th, td { padding: 12px; }
+th { background-color: #ff0000; color: white; }
+
+/* 🔘 buttons */
+button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    background-color: #ff0000;
+    color: white;
+    cursor: pointer;
+}
+button:hover { background-color: #d90000; }
+
+/* 🛒 cart */
+.cart {
+    background: rgba(255,255,255,0.95);
+    width: 80%;
+    margin: 20px auto;
+    padding: 15px;
+    border-radius: 10px;
+    color: black;
+}
+
+.remove { background: red; }
+
+/* 🚨 subscribe screen */
+#fullSubscribe {
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:red;
+    color:white;
+    font-size:100px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+    display:none;
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="mainContent">
+
+<h1>👕 Clothing Sell - JackwFandL_YT</h1>
+<h6>code67</h6>
+<h6>a secret code</h6>
+
+<!-- 🔎 SEARCH -->
+<input type="text" id="searchInput" placeholder="Search..." onkeyup="filterItems()">
+
+<!-- 👕 FILTER BUTTONS -->
+<div>
+<button onclick="setCategory('all')">All</button>
+<button onclick="setCategory('hoodie')">Hoodies</button>
+<button onclick="setCategory('tshirt')">T-Shirts</button>
+</div>
+
+<!-- 🧾 PRODUCTS -->
+<table>
+<thead>
+<tr>
+<th>Product</th>
+<th>Size</th>
+<th>Price</th>
+<th>Buy</th>
+</tr>
+</thead>
+
+<tbody id="productList">
+
+<!-- 🔥 UPDATED PRODUCT WITH IMAGE -->
+<tr data-category="hoodie">
+<td style="display:flex; align-items:center; gap:10px;">
+    <img src="c:\Users\maria\AppData\Local\Temp\WeChat Files\69e581c522918091fd837704da85363.jpg" width="70" style="border-radius:8px;">
+    Red & Orange Hoodie
+</td>
+<td>
+<select id="size1">
+<option>Small</option>
+<option>Medium</option>
+<option>Large</option>
+</select>
+</td>
+<td>$25</td>
+<td><button onclick="addToCart('Red & Orange Hoodie',25,'size1')">Add</button></td>
+</tr>
+
+<tr data-category="tshirt">
+<td>White T-Shirt</td>
+<td>
+<select id="size2">
+<option>Small</option>
+<option>Medium</option>
+<option>Large</option>
+</select>
+</td>
+<td>$25</td>
+<td><button onclick="addToCart('White T-Shirt',25,'size2')">Add</button></td>
+</tr>
+
+<tr data-category="hoodie">
+<td>Black Hoodie</td>
+<td>
+<select id="size3">
+<option>Small</option>
+<option>Medium</option>
+<option>Large</option>
+</select>
+</td>
+<td>$25</td>
+<td><button onclick="addToCart('Black Hoodie',25,'size3')">Add</button></td>
+</tr>
+
+</tbody>
+</table>
+
+<!-- 🛒 CART -->
+<div class="cart">
+<h2>Your Cart 🛒</h2>
+<ul id="cartList"></ul>
+<h3 id="total">Total: $0</h3>
+</div>
+
+<hr>
+
+<!-- 🔐 CODE SYSTEM -->
+<h3>Enter Code</h3>
+<input type="text" id="codeInput" placeholder="Enter code">
+<button onclick="checkCode()">Submit</button>
+<p id="result"></p>
+
+</div>
+
+<!-- 🚨 SUBSCRIBE SCREEN -->
+<div id="fullSubscribe">SUBSCRIBE!</div>
+
+<!-- 📌 FOOTER TEXT -->
+<div style="margin: 40px auto; width: 80%; color: white; font-size: 14px; line-height: 1.6; text-align: center;">
+
+<p>
+This website is made by a Youtuber named JackwF&L and this website will add more stuff for sell right now we got hoodies and shirts.
+</p>
+
+<p>
+WE GOT SOME EVENTS TOO DONT MISS THEM ,WE GIVE SOME SHIRTS FOR FREE IF U PUT THE RIGHT CODE IN AND WE ALSO WILL MAKE THE PRICES LOWER IN SOME EVENTS SO MAKE SURE NOT TO MISS THEM.
+</p>
+
+</div>
+
+<script>
+
+// 🧠 FILTER SYSTEM
+let currentCategory = "all";
+
+function setCategory(cat){
+    currentCategory = cat;
+    filterItems();
+}
+
+function filterItems(){
+    let input = document.getElementById("searchInput").value.toLowerCase();
+    let items = document.querySelectorAll("#productList tr");
+
+    items.forEach(item => {
+        let text = item.textContent.toLowerCase();
+        let category = item.getAttribute("data-category");
+
+        let matchSearch = text.includes(input);
+        let matchCategory = currentCategory === "all" || category === currentCategory;
+
+        item.style.display = (matchSearch && matchCategory) ? "" : "none";
+    });
+}
+
+// 🛒 CART
+let cart = [];
+let total = 0;
+
+function addToCart(name, price, sizeId){
+    const size = document.getElementById(sizeId).value;
+    cart.push({name, price, size});
+    total += price;
+    updateCart();
+}
+
+function removeItem(i){
+    total -= cart[i].price;
+    cart.splice(i,1);
+    updateCart();
+}
+
+function updateCart(){
+    const list = document.getElementById("cartList");
+    list.innerHTML = "";
+
+    cart.forEach((item,i)=>{
+        const li = document.createElement("li");
+        li.innerHTML = `${item.name} (${item.size}) - $${item.price}
+        <button class="remove" onclick="removeItem(${i})">X</button>`;
+        list.appendChild(li);
+    });
+
+    document.getElementById("total").textContent = "Total: $" + total;
+}
+
+// 🔐 CODES
+const validCodes = ["jackwfandl_yt", "shadow67", "final200", "mari137", "secret1"];
+
+const rewards = [
+    "🎉 Hoodie win!",
+    "🔥 T-Shirt win!",
+    "😎 Big hoodie win!"
+];
+
+function checkCode(){
+
+    const input = document.getElementById("codeInput");
+    const result = document.getElementById("result");
+    const code = input.value.trim().toLowerCase();
+
+    if(code === "code67"){
+        document.getElementById("mainContent").style.display = "none";
+        document.getElementById("fullSubscribe").style.display = "flex";
+
+        setTimeout(()=>{
+            window.open("https://www.youtube.com/@JackwFandL-m1", "_blank");
+            document.getElementById("fullSubscribe").style.display = "none";
+            document.getElementById("mainContent").style.display = "block";
+        },2000);
+        return;
+    }
+
+    if(validCodes.includes(code)){
+        const reward = rewards[Math.floor(Math.random()*rewards.length)];
+        result.textContent = reward;
+    } else {
+        result.textContent = "❌ Wrong code";
+    }
+}
+
+</script>
+
+</body>
+</html>
