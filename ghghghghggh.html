@@ -37,6 +37,7 @@ body::before {
     color: white;
     z-index: 0;
     pointer-events: none;
+    opacity: 0.08;
 }
 
 /* content layer */
@@ -107,10 +108,57 @@ button:hover { background-color: #d90000; }
     display:none;
 }
 
+/* 🟡 TOP MOVING TEXT */
+.movingText {
+    position: fixed;
+    top: 10px;
+    left: -300px;
+    font-size: 24px;
+    font-weight: bold;
+    color: yellow;
+    white-space: nowrap;
+    animation: moveAcross 10s linear infinite;
+    z-index: 9999;
+}
+
+@keyframes moveAcross {
+    0% { left: -300px; }
+    100% { left: 110%; }
+}
+
+/* 🔵 BOTTOM SCROLL TEXT */
+.bottomText {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: black;
+    color: white;
+    font-size: 18px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.bottomText span {
+    display: inline-block;
+    padding-left: 100%;
+    animation: scrollLeft 12s linear infinite;
+}
+
+@keyframes scrollLeft {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-100%); }
+}
+
 </style>
 </head>
 
 <body>
+
+<!-- 🟡 TOP MOVING TEXT -->
+<div class="movingText">
+    WELCOME TO F&L SHOP 🔥 BEST DEALS HERE!!
+</div>
 
 <div id="mainContent">
 
@@ -118,17 +166,14 @@ button:hover { background-color: #d90000; }
 <h6>code67</h6>
 <h6>a secret code</h6>
 
-<!-- 🔎 SEARCH -->
 <input type="text" id="searchInput" placeholder="Search..." onkeyup="filterItems()">
 
-<!-- 👕 FILTER BUTTONS -->
 <div>
 <button onclick="setCategory('all')">All</button>
 <button onclick="setCategory('hoodie')">Hoodies</button>
 <button onclick="setCategory('tshirt')">T-Shirts</button>
 </div>
 
-<!-- 🧾 PRODUCTS -->
 <table>
 <thead>
 <tr>
@@ -141,7 +186,6 @@ button:hover { background-color: #d90000; }
 
 <tbody id="productList">
 
-<!-- 🔥 UPDATED PRODUCT WITH IMAGE -->
 <tr data-category="hoodie">
 <td style="display:flex; align-items:center; gap:10px;">
     <img src="c:\Users\maria\AppData\Local\Temp\WeChat Files\69e581c522918091fd837704da85363.jpg" width="70" style="border-radius:8px;">
@@ -160,6 +204,8 @@ button:hover { background-color: #d90000; }
 
 <tr data-category="tshirt">
 <td>White T-Shirt</td>
+    <img src="c:\Users\maria\Desktop\image link\1.jpg">
+
 <td>
 <select id="size2">
 <option>Small</option>
@@ -187,7 +233,6 @@ button:hover { background-color: #d90000; }
 </tbody>
 </table>
 
-<!-- 🛒 CART -->
 <div class="cart">
 <h2>Your Cart 🛒</h2>
 <ul id="cartList"></ul>
@@ -196,7 +241,6 @@ button:hover { background-color: #d90000; }
 
 <hr>
 
-<!-- 🔐 CODE SYSTEM -->
 <h3>Enter Code</h3>
 <input type="text" id="codeInput" placeholder="Enter code">
 <button onclick="checkCode()">Submit</button>
@@ -207,22 +251,16 @@ button:hover { background-color: #d90000; }
 <!-- 🚨 SUBSCRIBE SCREEN -->
 <div id="fullSubscribe">SUBSCRIBE!</div>
 
-<!-- 📌 FOOTER TEXT -->
-<div style="margin: 40px auto; width: 80%; color: white; font-size: 14px; line-height: 1.6; text-align: center;">
-
-<p>
-This website is made by a Youtuber named JackwF&L and this website will add more stuff for sell right now we got hoodies and shirts.
-</p>
-
-<p>
-WE GOT SOME EVENTS TOO DONT MISS THEM ,WE GIVE SOME SHIRTS FOR FREE IF U PUT THE RIGHT CODE IN AND WE ALSO WILL MAKE THE PRICES LOWER IN SOME EVENTS SO MAKE SURE NOT TO MISS THEM.
-</p>
-
+<!-- 🔵 BOTTOM SCROLL TEXT -->
+<div class="bottomText">
+    <span>
+        A F&L SHOP WITH F&L JERSEY MAKE SURE TO BUY EM FOR MORE PLUSHIES AND SHIRTS!! 
+    </span>
 </div>
 
 <script>
 
-// 🧠 FILTER SYSTEM
+// FILTER
 let currentCategory = "all";
 
 function setCategory(cat){
@@ -245,7 +283,7 @@ function filterItems(){
     });
 }
 
-// 🛒 CART
+// CART
 let cart = [];
 let total = 0;
 
@@ -276,14 +314,10 @@ function updateCart(){
     document.getElementById("total").textContent = "Total: $" + total;
 }
 
-// 🔐 CODES
+// CODES
 const validCodes = ["jackwfandl_yt", "shadow67", "final200", "mari137", "secret1"];
 
-const rewards = [
-    "🎉 Hoodie win!",
-    "🔥 T-Shirt win!",
-    "😎 Big hoodie win!"
-];
+const rewards = ["🎉 Hoodie win!", "🔥 T-Shirt win!", "😎 Big hoodie win!"];
 
 function checkCode(){
 
