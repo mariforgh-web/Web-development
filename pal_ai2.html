@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Palindrome Game</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #0f172a, #1e293b);
+        color: white;
+        text-align: center;
+        padding-top: 70px;
+        overflow: hidden;
+    }
+
+    .box {
+        background: rgba(255,255,255,0.08);
+        padding: 30px;
+        border-radius: 20px;
+        display: inline-block;
+        backdrop-filter: blur(10px);
+        width: 320px;
+    }
+
+    h1 {
+        margin-bottom: 10px;
+    }
+
+    input {
+        padding: 12px;
+        width: 90%;
+        border-radius: 10px;
+        border: none;
+        margin-top: 10px;
+        font-size: 16px;
+    }
+
+    button {
+        margin-top: 15px;
+        padding: 12px;
+        width: 100%;
+        border: none;
+        border-radius: 10px;
+        background: #22c55e;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    button:hover {
+        background: #16a34a;
+    }
+
+    #result {
+        margin-top: 20px;
+        font-size: 20px;
+        min-height: 30px;
+    }
+
+    .score {
+        margin-top: 10px;
+        font-size: 16px;
+        color: #facc15;
+    }
+
+    .shake {
+        animation: shake 0.3s;
+    }
+
+    @keyframes shake {
+        0% { transform: translateX(0); }
+        25% { transform: translateX(-5px); }
+        50% { transform: translateX(5px); }
+        75% { transform: translateX(-5px); }
+        100% { transform: translateX(0); }
+    }
+
+    .confetti {
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        background: red;
+        animation: fall 2s linear forwards;
+    }
+
+    @keyframes fall {
+        to {
+            transform: translateY(100vh);
+            opacity: 0;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="box" id="box">
+    <h1>🔁 Palindrome Game</h1>
+    <p>Type a word and test your brain 🧠</p>
+
+    <input type="text" id="textInput" placeholder="Enter word...">
+    <button onclick="checkPalindrome()">Check</button>
+
+    <div id="result"></div>
+    <div class="score" id="score">Score: 0 | Streak: 0 🔥</div>
+</div>
+
+<script>
+let score = 0;
+let streak = 0;
+
+function checkPalindrome() {
+    let input = document.getElementById("textInput").value;
+    let box = document.getElementById("box");
+
+    let cleaned = input.replace(/[^A-Za-z0-9]/g, "").toLowerCase();
+    let reversed = cleaned.split("").reverse().join("");
+
+    let result = document.getElementById("result");
+    let scoreBoard = document.getElementById("score");
+
+    if (!input) {
+        result.innerHTML = "⚠️ Type something!";
+        return;
+    }
+
+    if (cleaned === reversed) {
+        score++;
+        streak++;
+
+        result.innerHTML = `🎉 YES! <b>${input}</b> is a palindrome!`;
+
+        launchConfetti();
+
+    } else {
+        streak = 0;
+
+        result.innerHTML = `❌ Nope! <b>${input}</b> is not a palindrome 😭`;
+
+        box.classList.add("shake");
+        setTimeout(() => box.classList.remove("shake"), 300);
+    }
+
+    scoreBoard.innerHTML = `Score: ${score} | Streak: ${streak} 🔥`;
+}
+
+// simple confetti
+function launchConfetti() {
+    for (let i = 0; i < 20; i++) {
+        let confetti = document.createElement("div");
+        confetti.classList.add("confetti");
+
+        confetti.style.left = Math.random() * window.innerWidth + "px";
+        confetti.style.background = ["#ff4d6d", "#22c55e", "#3b82f6", "#facc15"][Math.floor(Math.random()*4)];
+
+        document.body.appendChild(confetti);
+
+        setTimeout(() => {
+            confetti.remove();
+        }, 2000);
+    }
+}
+</script>
+
+</body>
+</html>
