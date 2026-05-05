@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Palindrome Quiz Game</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #0f172a, #1e293b);
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .container {
+        width: 420px;
+        background: rgba(255,255,255,0.08);
+        padding: 25px;
+        border-radius: 18px;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    }
+
+    h2 {
+        text-align: center;
+    }
+
+    .question {
+        font-size: 18px;
+        margin-bottom: 15px;
+    }
+
+    .option {
+        display: block;
+        background: rgba(255,255,255,0.1);
+        padding: 10px;
+        margin: 8px 0;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    .option:hover {
+        background: rgba(255,255,255,0.2);
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+        margin-top: 15px;
+        border: none;
+        border-radius: 10px;
+        background: #22c55e;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background: #16a34a;
+    }
+
+    .progress {
+        margin-bottom: 10px;
+        font-size: 14px;
+        color: #facc15;
+    }
+
+    .result {
+        text-align: center;
+        font-size: 20px;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>🔁 Palindrome Quiz</h2>
+
+    <div id="quiz">
+        <div class="progress" id="progress"></div>
+        <div class="question" id="question"></div>
+        <div id="options"></div>
+        <button onclick="nextQuestion()">Next</button>
+    </div>
+
+    <div id="result" class="result"></div>
+</div>
+
+<script>
+const questions = [
+    {q:"What is a palindrome?", a:["Same forward & backward","Random word","Long sentence only"], correct:0},
+    {q:"Which is palindrome?", a:["cat","madam","house"], correct:1},
+    {q:"Which number is palindrome?", a:["123","121","456"], correct:1},
+    {q:"Reverse of 'level' is?", a:["level","leevl","velel"], correct:0},
+    {q:"Is 'racecar' palindrome?", a:["Yes","No","Maybe"], correct:0},
+    {q:"Which is NOT palindrome?", a:["civic","noon","apple"], correct:2},
+    {q:"Palindrome must be?", a:["Same reversed","Long","Short"], correct:0},
+    {q:"Is 'dad' palindrome?", a:["Yes","No","Sometimes"], correct:0},
+    {q:"Is 'hello' palindrome?", a:["Yes","No","Depends"], correct:1},
+    {q:"Which is palindrome?", a:["refer","world","phone"], correct:0},
+
+    {q:"121 reversed is?", a:["121","112","211"], correct:0},
+    {q:"Is 'wow' palindrome?", a:["Yes","No","Maybe"], correct:0},
+    {q:"Palindrome ignores?", a:["spaces & symbols","letters","numbers"], correct:0},
+    {q:"Is 'python' palindrome?", a:["Yes","No","Maybe"], correct:1},
+    {q:"Best example of palindrome:", a:["madam","car","book"], correct:0},
+
+    {q:"Is 'rotor' palindrome?", a:["Yes","No","Maybe"], correct:0},
+    {q:"Palindrome direction:", a:["Both ways same","One way","Random"], correct:0},
+    {q:"Is 'food' palindrome?", a:["Yes","No","Maybe"], correct:1},
+    {q:"Which is number palindrome?", a:["10","11","12"], correct:1},
+    {q:"Palindrome is used in:", a:["coding logic","music","painting"], correct:0},
+
+    {q:"Is 'level' palindrome?", a:["Yes","No","Maybe"], correct:0},
+    {q:"Is 'abcba' palindrome?", a:["Yes","No","Maybe"], correct:0},
+    {q:"Reverse of 'madam'?", a:["madam","madaa","mddam"], correct:0},
+    {q:"Palindrome example:", a:["kayak","river","ocean"], correct:0},
+    {q:"Final concept:", a:["Symmetry","Randomness","Length"], correct:0}
+];
+
+let current = 0;
+let score = 0;
+let selected = -1;
+
+function loadQuestion() {
+    let q = questions[current];
+    document.getElementById("question").innerText = q.q;
+    document.getElementById("progress").innerText = `Question ${current+1} / 25`;
+
+    let optionsHTML = "";
+    q.a.forEach((opt, index) => {
+        optionsHTML += `
+        <div class="option" onclick="selectOption(${index})">
+            ${opt}
+        </div>`;
+    });
+
+    document.getElementById("options").innerHTML = optionsHTML;
+}
+
+function selectOption(index) {
+    selected = index;
+}
+
+function nextQuestion() {
+    if (selected === questions[current].correct) {
+        score++;
+    }
+
+    selected = -1;
+    current++;
+
+    if (current < questions.length) {
+        loadQuestion();
+    } else {
+        showResult();
+    }
+}
+
+function showResult() {
+    document.getElementById("quiz").style.display = "none";
+
+    let msg = "";
+    if (score >= 20) msg = "🔥 Genius! You mastered palindromes!";
+    else if (score >= 15) msg = "👍 Great job!";
+    else if (score >= 10) msg = "🙂 Not bad!";
+    else msg = "😅 Keep practicing!";
+
+    document.getElementById("result").innerHTML =
+        `🏁 Quiz Finished!<br><br>
+        Your Score: <b>${score}/25</b><br><br>
+        ${msg}`;
+}
+
+loadQuestion();
+</script>
+
+</body>
+</html>
