@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>World Analog Clocks</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            min-height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            padding:40px;
+
+            font-family:Arial, sans-serif;
+
+            background:
+            linear-gradient(135deg,
+            #0f2027,
+            #203a43,
+            #2c5364);
+
+            overflow:hidden;
+        }
+
+        .container{
+            display:grid;
+
+            grid-template-columns:
+            repeat(auto-fit, minmax(320px, 1fr));
+
+            gap:40px;
+
+            width:100%;
+            max-width:1400px;
+        }
+
+        .clock-card{
+
+            background:rgba(255,255,255,0.08);
+
+            border:1px solid rgba(255,255,255,0.12);
+
+            backdrop-filter:blur(12px);
+
+            border-radius:25px;
+
+            padding:30px;
+
+            text-align:center;
+
+            box-shadow:
+            0 8px 32px rgba(0,0,0,0.35),
+            0 0 25px rgba(0,255,255,0.08);
+
+            transition:0.4s;
+        }
+
+        .clock-card:hover{
+            transform:translateY(-10px) scale(1.02);
+
+            box-shadow:
+            0 12px 40px rgba(0,0,0,0.45),
+            0 0 35px rgba(0,255,255,0.2);
+        }
+
+        .city{
+            color:white;
+            font-size:28px;
+            font-weight:bold;
+            margin-bottom:5px;
+        }
+
+        .timezone{
+            color:#00ffff;
+            margin-bottom:25px;
+            font-size:15px;
+            letter-spacing:1px;
+        }
+
+        /* CLOCK */
+
+        .clock{
+            width:240px;
+            height:240px;
+
+            margin:auto;
+
+            border-radius:50%;
+
+            position:relative;
+
+            background:
+            radial-gradient(circle,
+            #222 0%,
+            #111 70%);
+
+            border:10px solid rgba(255,255,255,0.12);
+
+            box-shadow:
+            inset 0 0 20px rgba(255,255,255,0.08),
+            0 0 30px rgba(0,0,0,0.5);
+        }
+
+        /* NUMBERS */
+
+        .number{
+            position:absolute;
+            width:100%;
+            height:100%;
+            text-align:center;
+
+            color:white;
+            font-size:24px;
+            font-weight:bold;
+        }
+
+        .number span{
+            display:inline-block;
+            transform:translateY(10px);
+        }
+
+        .n1{ transform:rotate(30deg); }
+        .n1 span{ transform:rotate(-30deg); }
+
+        .n2{ transform:rotate(60deg); }
+        .n2 span{ transform:rotate(-60deg); }
+
+        .n3{ transform:rotate(90deg); }
+        .n3 span{ transform:rotate(-90deg); }
+
+        .n4{ transform:rotate(120deg); }
+        .n4 span{ transform:rotate(-120deg); }
+
+        .n5{ transform:rotate(150deg); }
+        .n5 span{ transform:rotate(-150deg); }
+
+        .n6{ transform:rotate(180deg); }
+        .n6 span{ transform:rotate(-180deg); }
+
+        .n7{ transform:rotate(210deg); }
+        .n7 span{ transform:rotate(-210deg); }
+
+        .n8{ transform:rotate(240deg); }
+        .n8 span{ transform:rotate(-240deg); }
+
+        .n9{ transform:rotate(270deg); }
+        .n9 span{ transform:rotate(-270deg); }
+
+        .n10{ transform:rotate(300deg); }
+        .n10 span{ transform:rotate(-300deg); }
+
+        .n11{ transform:rotate(330deg); }
+        .n11 span{ transform:rotate(-330deg); }
+
+        /* HANDS */
+
+        .hand{
+            position:absolute;
+
+            bottom:50%;
+            left:50%;
+
+            transform-origin:bottom;
+
+            transform:translateX(-50%) rotate(0deg);
+
+            border-radius:10px;
+        }
+
+        .hour{
+            width:7px;
+            height:60px;
+            background:white;
+            z-index:5;
+        }
+
+        .minute{
+            width:4px;
+            height:85px;
+            background:#00ffff;
+            z-index:10;
+        }
+
+        .second{
+            width:2px;
+            height:100px;
+            background:red;
+            z-index:15;
+
+            box-shadow:0 0 10px red;
+        }
+
+        /* CENTER */
+
+        .center-dot{
+            width:14px;
+            height:14px;
+
+            background:#00ffff;
+
+            position:absolute;
+
+            top:50%;
+            left:50%;
+
+            transform:translate(-50%, -50%);
+
+            border-radius:50%;
+
+            z-index:20;
+
+            box-shadow:0 0 15px #00ffff;
+        }
+
+        /* DIGITAL */
+
+        .digital{
+            color:white;
+
+            margin-top:25px;
+
+            font-size:26px;
+
+            font-weight:bold;
+
+            letter-spacing:2px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- EDT -->
+
+        <div class="clock-card">
+
+            <div class="city">Toronto</div>
+            <div class="timezone">EDT</div>
+
+            <div class="clock" id="clock1">
+
+                <div class="number n1"><span>1</span></div>
+                <div class="number n2"><span>2</span></div>
+                <div class="number n3"><span>3</span></div>
+                <div class="number n4"><span>4</span></div>
+                <div class="number n5"><span>5</span></div>
+                <div class="number n6"><span>6</span></div>
+                <div class="number n7"><span>7</span></div>
+                <div class="number n8"><span>8</span></div>
+                <div class="number n9"><span>9</span></div>
+                <div class="number n10"><span>10</span></div>
+                <div class="number n11"><span>11</span></div>
+                <div class="number n12"><span>12</span></div>
+
+                <div class="hand hour"></div>
+                <div class="hand minute"></div>
+                <div class="hand second"></div>
+
+                <div class="center-dot"></div>
+
+            </div>
+
+            <div class="digital"></div>
+
+        </div>
+
+        <!-- EUROPE -->
+
+        <div class="clock-card">
+
+            <div class="city">Paris</div>
+            <div class="timezone">Europe Time</div>
+
+            <div class="clock" id="clock2">
+
+                <div class="number n1"><span>1</span></div>
+                <div class="number n2"><span>2</span></div>
+                <div class="number n3"><span>3</span></div>
+                <div class="number n4"><span>4</span></div>
+                <div class="number n5"><span>5</span></div>
+                <div class="number n6"><span>6</span></div>
+                <div class="number n7"><span>7</span></div>
+                <div class="number n8"><span>8</span></div>
+                <div class="number n9"><span>9</span></div>
+                <div class="number n10"><span>10</span></div>
+                <div class="number n11"><span>11</span></div>
+                <div class="number n12"><span>12</span></div>
+
+                <div class="hand hour"></div>
+                <div class="hand minute"></div>
+                <div class="hand second"></div>
+
+                <div class="center-dot"></div>
+
+            </div>
+
+            <div class="digital"></div>
+
+        </div>
+
+        <!-- INDIA -->
+
+        <div class="clock-card">
+
+            <div class="city">New Delhi</div>
+            <div class="timezone">IST</div>
+
+            <div class="clock" id="clock3">
+
+                <div class="number n1"><span>1</span></div>
+                <div class="number n2"><span>2</span></div>
+                <div class="number n3"><span>3</span></div>
+                <div class="number n4"><span>4</span></div>
+                <div class="number n5"><span>5</span></div>
+                <div class="number n6"><span>6</span></div>
+                <div class="number n7"><span>7</span></div>
+                <div class="number n8"><span>8</span></div>
+                <div class="number n9"><span>9</span></div>
+                <div class="number n10"><span>10</span></div>
+                <div class="number n11"><span>11</span></div>
+                <div class="number n12"><span>12</span></div>
+
+                <div class="hand hour"></div>
+                <div class="hand minute"></div>
+                <div class="hand second"></div>
+
+                <div class="center-dot"></div>
+
+            </div>
+
+            <div class="digital"></div>
+
+        </div>
+
+        <!-- JAPAN -->
+
+        <div class="clock-card">
+
+            <div class="city">Tokyo</div>
+            <div class="timezone">JST</div>
+
+            <div class="clock" id="clock4">
+
+                <div class="number n1"><span>1</span></div>
+                <div class="number n2"><span>2</span></div>
+                <div class="number n3"><span>3</span></div>
+                <div class="number n4"><span>4</span></div>
+                <div class="number n5"><span>5</span></div>
+                <div class="number n6"><span>6</span></div>
+                <div class="number n7"><span>7</span></div>
+                <div class="number n8"><span>8</span></div>
+                <div class="number n9"><span>9</span></div>
+                <div class="number n10"><span>10</span></div>
+                <div class="number n11"><span>11</span></div>
+                <div class="number n12"><span>12</span></div>
+
+                <div class="hand hour"></div>
+                <div class="hand minute"></div>
+                <div class="hand second"></div>
+
+                <div class="center-dot"></div>
+
+            </div>
+
+            <div class="digital"></div>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        function updateClock(clockId, timeZone){
+
+            const clock = document.getElementById(clockId);
+
+            const now = new Date();
+
+            const localTime =
+            new Date(
+                now.toLocaleString("en-US", {
+                    timeZone: timeZone
+                })
+            );
+
+            const seconds = localTime.getSeconds();
+
+            const minutes = localTime.getMinutes();
+
+            const hours = localTime.getHours();
+
+            // HANDS
+
+            const hourHand =
+            clock.querySelector(".hour");
+
+            const minuteHand =
+            clock.querySelector(".minute");
+
+            const secondHand =
+            clock.querySelector(".second");
+
+            // ANGLES
+
+            const secondDeg = seconds * 6;
+
+            const minuteDeg =
+            minutes * 6 + seconds * 0.1;
+
+            const hourDeg =
+            (hours % 12) * 30 +
+            minutes * 0.5;
+
+            // ROTATION
+
+            hourHand.style.transform =
+            `translateX(-50%) rotate(${hourDeg}deg)`;
+
+            minuteHand.style.transform =
+            `translateX(-50%) rotate(${minuteDeg}deg)`;
+
+            secondHand.style.transform =
+            `translateX(-50%) rotate(${secondDeg}deg)`;
+
+            // DIGITAL CLOCK
+
+            const digital =
+            clock.parentElement.querySelector(".digital");
+
+            digital.innerHTML =
+            localTime.toLocaleTimeString();
+
+        }
+
+        function runClocks(){
+
+            updateClock(
+                "clock1",
+                "America/Toronto"
+            );
+
+            updateClock(
+                "clock2",
+                "Europe/Paris"
+            );
+
+            updateClock(
+                "clock3",
+                "Asia/Kolkata"
+            );
+
+            updateClock(
+                "clock4",
+                "Asia/Tokyo"
+            );
+        }
+
+        // Start
+
+        runClocks();
+
+        // Update every second
+
+        setInterval(runClocks, 1000);
+
+    </script>
+
+</body>
+</html>

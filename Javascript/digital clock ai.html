@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modern Digital Clock</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            font-family:'Poppins', sans-serif;
+            overflow:hidden;
+            background:linear-gradient(-45deg,
+            #0f2027,
+            #203a43,
+            #2c5364,
+            #1c1c1c);
+            background-size:400% 400%;
+            animation:bgAnimation 12s ease infinite;
+        }
+
+        @keyframes bgAnimation{
+            0%{
+                background-position:0% 50%;
+            }
+
+            50%{
+                background-position:100% 50%;
+            }
+
+            100%{
+                background-position:0% 50%;
+            }
+        }
+
+        .container{
+            width:420px;
+            padding:40px;
+            border-radius:30px;
+            text-align:center;
+
+            background:rgba(255,255,255,0.08);
+
+            backdrop-filter:blur(12px);
+
+            border:1px solid rgba(255,255,255,0.15);
+
+            box-shadow:
+            0 8px 32px rgba(0,0,0,0.35),
+            0 0 25px rgba(0,255,255,0.15);
+
+            animation:float 4s ease-in-out infinite;
+        }
+
+        @keyframes float{
+            0%{
+                transform:translateY(0px);
+            }
+
+            50%{
+                transform:translateY(-10px);
+            }
+
+            100%{
+                transform:translateY(0px);
+            }
+        }
+
+        h1{
+            color:white;
+            margin-bottom:10px;
+            font-size:32px;
+            font-weight:700;
+            letter-spacing:2px;
+        }
+
+        .greeting{
+            color:#d9faff;
+            font-size:18px;
+            margin-bottom:25px;
+            opacity:0.9;
+        }
+
+        .clock{
+            font-size:72px;
+            font-weight:700;
+            color:#00ffff;
+            letter-spacing:4px;
+
+            text-shadow:
+            0 0 10px #00ffff,
+            0 0 20px #00ffff,
+            0 0 40px #00ffff;
+
+            margin-bottom:20px;
+
+            transition:0.3s;
+        }
+
+        .date{
+            color:white;
+            font-size:22px;
+            margin-bottom:25px;
+            opacity:0.9;
+        }
+
+        .info{
+            display:flex;
+            justify-content:space-between;
+            margin-top:20px;
+            gap:10px;
+        }
+
+        .card{
+            flex:1;
+            padding:15px;
+            border-radius:15px;
+
+            background:rgba(255,255,255,0.08);
+
+            color:white;
+
+            box-shadow:0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .card h3{
+            font-size:14px;
+            margin-bottom:8px;
+            color:#00ffff;
+        }
+
+        .card p{
+            font-size:18px;
+            font-weight:600;
+        }
+
+        .pulse{
+            animation:pulse 1s infinite;
+        }
+
+        @keyframes pulse{
+
+            0%{
+                transform:scale(1);
+            }
+
+            50%{
+                transform:scale(1.04);
+            }
+
+            100%{
+                transform:scale(1);
+            }
+        }
+
+        .circle{
+            position:absolute;
+            border-radius:50%;
+            background:rgba(0,255,255,0.08);
+            animation:move 15s linear infinite;
+        }
+
+        .circle:nth-child(1){
+            width:250px;
+            height:250px;
+            top:-80px;
+            left:-80px;
+        }
+
+        .circle:nth-child(2){
+            width:300px;
+            height:300px;
+            bottom:-120px;
+            right:-100px;
+        }
+
+        @keyframes move{
+            0%{
+                transform:rotate(0deg) translateY(0px);
+            }
+
+            50%{
+                transform:rotate(180deg) translateY(20px);
+            }
+
+            100%{
+                transform:rotate(360deg) translateY(0px);
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- Background Effects -->
+    <div class="circle"></div>
+    <div class="circle"></div>
+
+    <div class="container">
+
+        <h1>DIGITAL CLOCK</h1>
+
+        <div class="greeting" id="greeting"></div>
+
+        <div id="MyClockDisplay" class="clock pulse"></div>
+
+        <div id="dateDisplay" class="date"></div>
+
+        <div class="info">
+
+            <div class="card">
+                <h3>TIMEZONE</h3>
+                <p id="timezone"></p>
+            </div>
+
+            <div class="card">
+                <h3>DAY</h3>
+                <p id="day"></p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        function showTime(){
+
+            const date = new Date();
+
+            let h = date.getHours();
+            let m = date.getMinutes();
+            let s = date.getSeconds();
+
+            let session = "AM";
+
+            // Greeting
+            let greeting = "";
+
+            if(h < 12){
+                greeting = "☀️ Good Morning";
+            }
+
+            else if(h < 18){
+                greeting = "🌤 Good Afternoon";
+            }
+
+            else{
+                greeting = "🌙 Good Evening";
+            }
+
+            // Convert to 12-hour format
+            if(h >= 12){
+                session = "PM";
+            }
+
+            if(h > 12){
+                h = h - 12;
+            }
+
+            if(h === 0){
+                h = 12;
+            }
+
+            // Add leading zeros
+            h = (h < 10) ? "0" + h : h;
+            m = (m < 10) ? "0" + m : m;
+            s = (s < 10) ? "0" + s : s;
+
+            // Final time
+            const time = `${h}:${m}:${s} ${session}`;
+
+            document.getElementById("MyClockDisplay").innerText = time;
+
+            // Date
+            const options = {
+                weekday:'long',
+                year:'numeric',
+                month:'long',
+                day:'numeric'
+            };
+
+            document.getElementById("dateDisplay").innerText =
+            date.toLocaleDateString('en-US', options);
+
+            // Greeting
+            document.getElementById("greeting").innerText = greeting;
+
+            // Timezone
+            document.getElementById("timezone").innerText =
+            Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+            // Day
+            document.getElementById("day").innerText =
+            date.toLocaleDateString('en-US', { weekday:'long' });
+
+        }
+
+        // Run immediately
+        showTime();
+
+        // Update every second
+        setInterval(showTime, 1000);
+
+    </script>
+
+</body>
+</html>
