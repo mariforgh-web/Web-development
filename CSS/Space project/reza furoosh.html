@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fatech </title>
+
+<style>
+
+/* 🎨 Background animation */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background: linear-gradient(-45deg, #ff0000, #ff4d4d, yellow, blue);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    color: white;
+}
+
+/* 🔄 animation */
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* 💧 watermark */
+body::before {
+    content: "FATECH";
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 200px;
+    font-weight: bold;
+    color: white;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.08;
+}
+
+/* content layer */
+#mainContent, .cart, #fullSubscribe {
+    position: relative;
+    z-index: 1;
+}
+
+/* 🔎 search */
+#searchInput {
+    padding: 10px;
+    width: 250px;
+    border-radius: 6px;
+    border: none;
+    margin-top: 15px;
+}
+
+/* 🛍️ table */
+table {
+    width: 80%;
+    margin: 30px auto;
+    border-collapse: collapse;
+    background-color: rgba(255,255,255,0.95);
+    border-radius: 10px;
+    color: black;
+}
+
+th, td { padding: 12px; }
+th { background-color: black; color: white; }
+
+/* 🔘 buttons */
+button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    background-color: Black;
+    color: white;
+    cursor: pointer;
+}
+button:hover { background-color: blue; }
+
+/* 🛒 cart */
+.cart {
+    background: rgba(255,255,255,0.95);
+    width: 80%;
+    margin: 20px auto;
+    padding: 15px;
+    border-radius: 10px;
+    color: black;
+}
+
+.remove { background: red; }
+
+/* 🚨 subscribe screen */
+#fullSubscribe {
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:green;
+    color:white;
+    font-size:100px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+    display:none;
+}
+
+/* 🟡 TOP MOVING TEXT */
+.movingText {
+    position: fixed;
+    top: 10px;
+    left: -300px;
+    font-size: 24px;
+    font-weight: bold;
+    color: Red;
+    white-space: nowrap;
+    animation: moveAcross 10s linear infinite;
+    z-index: 9999;
+}
+
+@keyframes moveAcross {
+    0% { left: -300px; }
+    100% { left: 110%; }
+}
+
+/* 🔵 BOTTOM SCROLL TEXT */
+.bottomText {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: black;
+    color: white;
+    font-size: 18px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.bottomText span {
+    display: inline-block;
+    padding-left: 100%;
+    animation: scrollLeft 12s linear infinite;
+}
+
+@keyframes scrollLeft {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-100%); }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- 🟡 TOP MOVING TEXT -->
+<div class="movingText">
+    Welcome to Fatech Electronic a Electronic shop in Iran 
+</div>
+
+<div id="mainContent">
+
+<h1>Fatech Electronic</h1>
+
+
+
+<input type="text" id="searchInput" placeholder="Search..." onkeyup="filterItems()">
+
+<div>
+<button onclick="setCategory('all')">All</button>
+<button onclick="setCategory('Furniture')">Furniture</button>
+<button onclick="setCategory('Other product')">Other product</button>
+</div>
+
+<table>
+<thead>
+<tr>
+<th>Product</th>
+<th>Brand/Type</th>
+<th>Price</th>
+<th>Buy</th>
+</tr>
+</thead>
+
+<tbody id="productList">
+
+
+<tr data-category="UPS">
+<td>Bess<img width="50" src="https://tse1.mm.bing.net/th/id/OIP.79LX2gp4Cps1SXJdjJdgoAHaHa?pid=Api&P=0&h=180"></td>
+
+<td>
+<select id="size3">
+<option>Benches and ottomans</option>
+<option>Dining table</option>
+<option>Console and decks</option>
+<option>Cocktail tables</option>
+</select>
+</td>
+<td>$50</td>
+<td><button onclick="addToCart('UPS',25,'size3')">Add</button></td>
+</tr>
+<tr data-category="Solar panel">
+<td> oSolar panel    <img width="50" src="https://tse3.mm.bing.net/th/id/OIP.sx3Ro1rZnjVlLpbjF1cjwgHaE6?pid=Api&P=0&h=180">
+</td>
+
+<td>
+<select id="size2">
+<option>Flexible PV Panel</option>
+<option>Glass Solar Panel</option>
+</select>
+</td>
+<td>$25</td>
+<td><button onclick="addToCart('Solar panel',25,'size2')">Add</button></td>
+</tr>
+
+
+<td>UPS<img width="50" src="https://powersolutions.com.my/wp-content/uploads/2019/06/All-series-600x493.jpg"></td>
+</td>
+
+<td>
+<select id="size2">
+<option>Mini UPS upto (500w)</option>
+<option>Interactive UPS</option>
+<option>Online UPS</option>
+<option>Special UPS</option>
+</select>
+</td>
+<td>$25</td>
+<td><button onclick="addToCart('UPS',25,'size2')">Add</button></td>
+</tr>
+
+</tbody>
+</table>
+
+<div class="cart">
+<h2>Your Cart 🛒</h2>
+<ul id="cartList"></ul>
+<h3 id="total">Total: $0</h3>
+</div>
+
+<hr>
+
+<h3></h3>
+
+
+<p id="result"></p>
+
+</div>
+
+<!-- 🚨 SUBSCRIBE SCREEN -->
+<div id="fullSubscribe">SUBSCRIBE!</div>
+
+<!-- 🔵 BOTTOM SCROLL TEXT -->
+<div class="bottomText">
+    <span>
+        Fatech Electronic shop buy stuff and make the most of it. 
+    </span>
+</div>
+
+<script>
+
+// FILTER
+let currentCategory = "all";
+
+function setCategory(cat){
+    currentCategory = cat;
+    filterItems();
+}
+
+function filterItems(){
+    let input = document.getElementById("searchInput").value.toLowerCase();
+    let items = document.querySelectorAll("#productList tr");
+
+    items.forEach(item => {
+        let text = item.textContent.toLowerCase();
+        let category = item.getAttribute("data-category");
+
+        let matchSearch = text.includes(input);
+        let matchCategory = currentCategory === "all" || category === currentCategory;
+
+        item.style.display = (matchSearch && matchCategory) ? "" : "none";
+    });
+}
+
+// CART
+let cart = [];
+let total = 0;
+
+function addToCart(name, price, sizeId){
+    const size = document.getElementById(sizeId).value;
+    cart.push({name, price, size});
+    total += price;
+    updateCart();
+}
+
+function removeItem(i){
+    total -= cart[i].price;
+    cart.splice(i,1);
+    updateCart();
+}
+
+function updateCart(){
+    const list = document.getElementById("cartList");
+    list.innerHTML = "";
+
+    cart.forEach((item,i)=>{
+        const li = document.createElement("li");
+        li.innerHTML = `${item.name} (${item.size}) - $${item.price}
+        <button class="remove" onclick="removeItem(${i})">X</button>`;
+        list.appendChild(li);
+    });
+
+    document.getElementById("total").textContent = "Total: $" + total;
+}
+
+// CODES
+const validCodes = [""];
+
+const rewards = [""];
+
+function checkCode(){
+
+    const input = document.getElementById("codeInput");
+    const result = document.getElementById("result");
+    const code = input.value.trim().toLowerCase();
+
+    if(code === "code67"){
+        document.getElementById("mainContent").style.display = "none";
+        document.getElementById("fullSubscribe").style.display = "flex";
+
+        setTimeout(()=>{
+            window.open("", "_blank");
+            document.getElementById("fullSubscribe").style.display = "none";
+            document.getElementById("mainContent").style.display = "block";
+        },2000);
+        return;
+    }
+
+    if(validCodes.includes(code)){
+        const reward = rewards[Math.floor(Math.random()*rewards.length)];
+        result.textContent = reward;
+    } else {
+        result.textContent = "";
+    }
+}
+
+</script>
+
+</body>
+</html>

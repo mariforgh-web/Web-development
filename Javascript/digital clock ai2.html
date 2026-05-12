@@ -1,481 +1,627 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>World Analog Clocks</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-    <style>
+<title>World Clock Dashboard</title>
 
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-        body{
-            min-height:100vh;
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            padding:40px;
+<style>
 
-            font-family:Arial, sans-serif;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-            background:
-            linear-gradient(135deg,
-            #0f2027,
-            #203a43,
-            #2c5364);
+body{
 
-            overflow:hidden;
-        }
+    font-family:'Poppins', sans-serif;
 
-        .container{
-            display:grid;
+    background:
+    linear-gradient(135deg,
+    #0f2027,
+    #203a43,
+    #2c5364);
 
-            grid-template-columns:
-            repeat(auto-fit, minmax(320px, 1fr));
+    min-height:100vh;
 
-            gap:40px;
+    overflow-y:auto;
 
-            width:100%;
-            max-width:1400px;
-        }
+    color:white;
 
-        .clock-card{
+    padding:40px;
+}
 
-            background:rgba(255,255,255,0.08);
+/* TITLE */
 
-            border:1px solid rgba(255,255,255,0.12);
+.title{
+    text-align:center;
+    margin-bottom:50px;
+}
 
-            backdrop-filter:blur(12px);
+.title h1{
+    font-size:60px;
+    margin-bottom:10px;
 
-            border-radius:25px;
+    background:linear-gradient(
+    90deg,
+    #00ffff,
+    #ffffff);
 
-            padding:30px;
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
 
-            text-align:center;
+.title p{
+    opacity:0.8;
+    font-size:18px;
+}
 
-            box-shadow:
-            0 8px 32px rgba(0,0,0,0.35),
-            0 0 25px rgba(0,255,255,0.08);
+/* GRID */
 
-            transition:0.4s;
-        }
+.container{
 
-        .clock-card:hover{
-            transform:translateY(-10px) scale(1.02);
+    display:grid;
 
-            box-shadow:
-            0 12px 40px rgba(0,0,0,0.45),
-            0 0 35px rgba(0,255,255,0.2);
-        }
+    grid-template-columns:
+    repeat(auto-fit,minmax(330px,1fr));
 
-        .city{
-            color:white;
-            font-size:28px;
-            font-weight:bold;
-            margin-bottom:5px;
-        }
+    gap:40px;
+}
 
-        .timezone{
-            color:#00ffff;
-            margin-bottom:25px;
-            font-size:15px;
-            letter-spacing:1px;
-        }
+/* CARD */
 
-        /* CLOCK */
+.clock-card{
 
-        .clock{
-            width:240px;
-            height:240px;
+    border-radius:30px;
 
-            margin:auto;
+    padding:30px;
 
-            border-radius:50%;
+    position:relative;
 
-            position:relative;
+    overflow:hidden;
 
-            background:
-            radial-gradient(circle,
-            #222 0%,
-            #111 70%);
+    transition:0.5s;
 
-            border:10px solid rgba(255,255,255,0.12);
+    backdrop-filter:blur(15px);
 
-            box-shadow:
-            inset 0 0 20px rgba(255,255,255,0.08),
-            0 0 30px rgba(0,0,0,0.5);
-        }
+    border:1px solid rgba(255,255,255,0.15);
+}
 
-        /* NUMBERS */
+.clock-card:hover{
+    transform:
+    translateY(-10px)
+    scale(1.02);
+}
 
-        .number{
-            position:absolute;
-            width:100%;
-            height:100%;
-            text-align:center;
+/* DAY MODE */
 
-            color:white;
-            font-size:24px;
-            font-weight:bold;
-        }
+.day{
 
-        .number span{
-            display:inline-block;
-            transform:translateY(10px);
-        }
+    background:
+    linear-gradient(135deg,
+    rgba(255,255,255,0.15),
+    rgba(255,255,255,0.08));
 
-        .n1{ transform:rotate(30deg); }
-        .n1 span{ transform:rotate(-30deg); }
+    box-shadow:
+    0 10px 30px rgba(255,255,255,0.1),
+    0 0 30px rgba(0,255,255,0.15);
+}
 
-        .n2{ transform:rotate(60deg); }
-        .n2 span{ transform:rotate(-60deg); }
+/* NIGHT MODE */
 
-        .n3{ transform:rotate(90deg); }
-        .n3 span{ transform:rotate(-90deg); }
+.night{
 
-        .n4{ transform:rotate(120deg); }
-        .n4 span{ transform:rotate(-120deg); }
+    background:
+    linear-gradient(135deg,
+    rgba(0,0,0,0.45),
+    rgba(0,0,0,0.25));
 
-        .n5{ transform:rotate(150deg); }
-        .n5 span{ transform:rotate(-150deg); }
+    box-shadow:
+    0 10px 30px rgba(0,0,0,0.5),
+    0 0 40px rgba(0,0,0,0.5);
+}
 
-        .n6{ transform:rotate(180deg); }
-        .n6 span{ transform:rotate(-180deg); }
+/* CITY */
 
-        .n7{ transform:rotate(210deg); }
-        .n7 span{ transform:rotate(-210deg); }
+.city{
+    text-align:center;
+    margin-bottom:20px;
+}
 
-        .n8{ transform:rotate(240deg); }
-        .n8 span{ transform:rotate(-240deg); }
+.city h2{
+    font-size:34px;
+}
 
-        .n9{ transform:rotate(270deg); }
-        .n9 span{ transform:rotate(-270deg); }
+.city p{
+    color:#00ffff;
+    letter-spacing:2px;
+    margin-top:5px;
+}
 
-        .n10{ transform:rotate(300deg); }
-        .n10 span{ transform:rotate(-300deg); }
+/* CLOCK */
 
-        .n11{ transform:rotate(330deg); }
-        .n11 span{ transform:rotate(-330deg); }
+.clock{
 
-        /* HANDS */
+    width:250px;
+    height:250px;
 
-        .hand{
-            position:absolute;
+    border-radius:50%;
 
-            bottom:50%;
-            left:50%;
+    margin:20px auto;
 
-            transform-origin:bottom;
+    position:relative;
 
-            transform:translateX(-50%) rotate(0deg);
+    background:
+    radial-gradient(circle,
+    #222 0%,
+    #111 70%);
 
-            border-radius:10px;
-        }
+    border:10px solid rgba(255,255,255,0.1);
 
-        .hour{
-            width:7px;
-            height:60px;
-            background:white;
-            z-index:5;
-        }
+    box-shadow:
+    inset 0 0 20px rgba(255,255,255,0.1),
+    0 0 25px rgba(0,0,0,0.4);
+}
 
-        .minute{
-            width:4px;
-            height:85px;
-            background:#00ffff;
-            z-index:10;
-        }
+/* NUMBERS */
 
-        .second{
-            width:2px;
-            height:100px;
-            background:red;
-            z-index:15;
+.number{
 
-            box-shadow:0 0 10px red;
-        }
+    position:absolute;
 
-        /* CENTER */
+    width:100%;
+    height:100%;
 
-        .center-dot{
-            width:14px;
-            height:14px;
+    text-align:center;
 
-            background:#00ffff;
+    font-size:24px;
 
-            position:absolute;
+    font-weight:bold;
+}
 
-            top:50%;
-            left:50%;
+.number span{
+    display:inline-block;
+    transform:translateY(10px);
+}
 
-            transform:translate(-50%, -50%);
+.n1{ transform:rotate(30deg);}
+.n1 span{ transform:rotate(-30deg);}
 
-            border-radius:50%;
+.n2{ transform:rotate(60deg);}
+.n2 span{ transform:rotate(-60deg);}
 
-            z-index:20;
+.n3{ transform:rotate(90deg);}
+.n3 span{ transform:rotate(-90deg);}
 
-            box-shadow:0 0 15px #00ffff;
-        }
+.n4{ transform:rotate(120deg);}
+.n4 span{ transform:rotate(-120deg);}
 
-        /* DIGITAL */
+.n5{ transform:rotate(150deg);}
+.n5 span{ transform:rotate(-150deg);}
 
-        .digital{
-            color:white;
+.n6{ transform:rotate(180deg);}
+.n6 span{ transform:rotate(-180deg);}
 
-            margin-top:25px;
+.n7{ transform:rotate(210deg);}
+.n7 span{ transform:rotate(-210deg);}
 
-            font-size:26px;
+.n8{ transform:rotate(240deg);}
+.n8 span{ transform:rotate(-240deg);}
 
-            font-weight:bold;
+.n9{ transform:rotate(270deg);}
+.n9 span{ transform:rotate(-270deg);}
 
-            letter-spacing:2px;
-        }
+.n10{ transform:rotate(300deg);}
+.n10 span{ transform:rotate(-300deg);}
 
-    </style>
+.n11{ transform:rotate(330deg);}
+.n11 span{ transform:rotate(-330deg);}
+
+/* HANDS */
+
+.hand{
+
+    position:absolute;
+
+    bottom:50%;
+    left:50%;
+
+    transform-origin:bottom;
+
+    transform:
+    translateX(-50%)
+    rotate(0deg);
+
+    border-radius:20px;
+}
+
+.hour{
+    width:8px;
+    height:65px;
+    background:white;
+    z-index:5;
+}
+
+.minute{
+    width:5px;
+    height:90px;
+    background:#00ffff;
+    z-index:10;
+}
+
+.second{
+    width:2px;
+    height:105px;
+    background:red;
+    z-index:15;
+
+    box-shadow:0 0 12px red;
+}
+
+/* CENTER */
+
+.center-dot{
+
+    width:16px;
+    height:16px;
+
+    background:#00ffff;
+
+    position:absolute;
+
+    top:50%;
+    left:50%;
+
+    transform:translate(-50%,-50%);
+
+    border-radius:50%;
+
+    z-index:20;
+
+    box-shadow:0 0 15px #00ffff;
+}
+
+/* DIGITAL */
+
+.digital{
+
+    text-align:center;
+
+    font-size:30px;
+
+    font-weight:bold;
+
+    margin-top:20px;
+
+    letter-spacing:3px;
+}
+
+/* DATE */
+
+.date{
+
+    text-align:center;
+
+    margin-top:12px;
+
+    opacity:0.85;
+}
+
+/* STATUS */
+
+.status{
+
+    text-align:center;
+
+    margin-top:15px;
+
+    font-size:18px;
+
+    font-weight:bold;
+}
+
+.am{
+    color:#ffe066;
+}
+
+.pm{
+    color:#8ec5ff;
+}
+
+/* SCROLLBAR */
+
+::-webkit-scrollbar{
+    width:12px;
+}
+
+::-webkit-scrollbar-track{
+    background:#111;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#00ffff;
+    border-radius:20px;
+}
+
+</style>
 </head>
 
 <body>
 
-    <div class="container">
+<div class="title">
 
-        <!-- EDT -->
+    <h1>WORLD CLOCKS</h1>
 
-        <div class="clock-card">
+    <p>Live Analog & Digital Time Around The World</p>
 
-            <div class="city">Toronto</div>
-            <div class="timezone">EDT</div>
+</div>
 
-            <div class="clock" id="clock1">
+<div class="container" id="container"></div>
 
-                <div class="number n1"><span>1</span></div>
-                <div class="number n2"><span>2</span></div>
-                <div class="number n3"><span>3</span></div>
-                <div class="number n4"><span>4</span></div>
-                <div class="number n5"><span>5</span></div>
-                <div class="number n6"><span>6</span></div>
-                <div class="number n7"><span>7</span></div>
-                <div class="number n8"><span>8</span></div>
-                <div class="number n9"><span>9</span></div>
-                <div class="number n10"><span>10</span></div>
-                <div class="number n11"><span>11</span></div>
-                <div class="number n12"><span>12</span></div>
+<script>
 
-                <div class="hand hour"></div>
-                <div class="hand minute"></div>
-                <div class="hand second"></div>
+/* WORLD TIME ZONES */
 
-                <div class="center-dot"></div>
+const clocks = [
 
-            </div>
+{
+    city:"Toronto",
+    zone:"America/Toronto",
+    label:"EDT"
+},
 
-            <div class="digital"></div>
+{
+    city:"New York",
+    zone:"America/New_York",
+    label:"EDT"
+},
 
-        </div>
+{
+    city:"London",
+    zone:"Europe/London",
+    label:"GMT"
+},
 
-        <!-- EUROPE -->
+{
+    city:"Paris",
+    zone:"Europe/Paris",
+    label:"CET"
+},
 
-        <div class="clock-card">
+{
+    city:"Dubai",
+    zone:"Asia/Dubai",
+    label:"GST"
+},
 
-            <div class="city">Paris</div>
-            <div class="timezone">Europe Time</div>
+{
+    city:"New Delhi",
+    zone:"Asia/Kolkata",
+    label:"IST"
+},
 
-            <div class="clock" id="clock2">
+{
+    city:"Tokyo",
+    zone:"Asia/Tokyo",
+    label:"JST"
+},
 
-                <div class="number n1"><span>1</span></div>
-                <div class="number n2"><span>2</span></div>
-                <div class="number n3"><span>3</span></div>
-                <div class="number n4"><span>4</span></div>
-                <div class="number n5"><span>5</span></div>
-                <div class="number n6"><span>6</span></div>
-                <div class="number n7"><span>7</span></div>
-                <div class="number n8"><span>8</span></div>
-                <div class="number n9"><span>9</span></div>
-                <div class="number n10"><span>10</span></div>
-                <div class="number n11"><span>11</span></div>
-                <div class="number n12"><span>12</span></div>
+{
+    city:"Beijing",
+    zone:"Asia/Shanghai",
+    label:"CST"
+},
 
-                <div class="hand hour"></div>
-                <div class="hand minute"></div>
-                <div class="hand second"></div>
+{
+    city:"Sydney",
+    zone:"Australia/Sydney",
+    label:"AEST"
+},
 
-                <div class="center-dot"></div>
+{
+    city:"Los Angeles",
+    zone:"America/Los_Angeles",
+    label:"PDT"
+},
 
-            </div>
+{
+    city:"Mexico City",
+    zone:"America/Mexico_City",
+    label:"CST"
+},
 
-            <div class="digital"></div>
+{
+    city:"Moscow",
+    zone:"Europe/Moscow",
+    label:"MSK"
+}
 
-        </div>
+];
 
-        <!-- INDIA -->
+/* CREATE CLOCKS */
 
-        <div class="clock-card">
+const container =
+document.getElementById("container");
 
-            <div class="city">New Delhi</div>
-            <div class="timezone">IST</div>
+clocks.forEach((clockData,index)=>{
 
-            <div class="clock" id="clock3">
+    const card =
+    document.createElement("div");
 
-                <div class="number n1"><span>1</span></div>
-                <div class="number n2"><span>2</span></div>
-                <div class="number n3"><span>3</span></div>
-                <div class="number n4"><span>4</span></div>
-                <div class="number n5"><span>5</span></div>
-                <div class="number n6"><span>6</span></div>
-                <div class="number n7"><span>7</span></div>
-                <div class="number n8"><span>8</span></div>
-                <div class="number n9"><span>9</span></div>
-                <div class="number n10"><span>10</span></div>
-                <div class="number n11"><span>11</span></div>
-                <div class="number n12"><span>12</span></div>
+    card.className =
+    "clock-card";
 
-                <div class="hand hour"></div>
-                <div class="hand minute"></div>
-                <div class="hand second"></div>
+    card.innerHTML = `
 
-                <div class="center-dot"></div>
+    <div class="city">
+        <h2>${clockData.city}</h2>
+        <p>${clockData.label}</p>
+    </div>
 
-            </div>
+    <div class="clock" id="clock${index}">
 
-            <div class="digital"></div>
+        <div class="number n1"><span>1</span></div>
+        <div class="number n2"><span>2</span></div>
+        <div class="number n3"><span>3</span></div>
+        <div class="number n4"><span>4</span></div>
+        <div class="number n5"><span>5</span></div>
+        <div class="number n6"><span>6</span></div>
+        <div class="number n7"><span>7</span></div>
+        <div class="number n8"><span>8</span></div>
+        <div class="number n9"><span>9</span></div>
+        <div class="number n10"><span>10</span></div>
+        <div class="number n11"><span>11</span></div>
+        <div class="number n12"><span>12</span></div>
 
-        </div>
+        <div class="hand hour"></div>
+        <div class="hand minute"></div>
+        <div class="hand second"></div>
 
-        <!-- JAPAN -->
-
-        <div class="clock-card">
-
-            <div class="city">Tokyo</div>
-            <div class="timezone">JST</div>
-
-            <div class="clock" id="clock4">
-
-                <div class="number n1"><span>1</span></div>
-                <div class="number n2"><span>2</span></div>
-                <div class="number n3"><span>3</span></div>
-                <div class="number n4"><span>4</span></div>
-                <div class="number n5"><span>5</span></div>
-                <div class="number n6"><span>6</span></div>
-                <div class="number n7"><span>7</span></div>
-                <div class="number n8"><span>8</span></div>
-                <div class="number n9"><span>9</span></div>
-                <div class="number n10"><span>10</span></div>
-                <div class="number n11"><span>11</span></div>
-                <div class="number n12"><span>12</span></div>
-
-                <div class="hand hour"></div>
-                <div class="hand minute"></div>
-                <div class="hand second"></div>
-
-                <div class="center-dot"></div>
-
-            </div>
-
-            <div class="digital"></div>
-
-        </div>
+        <div class="center-dot"></div>
 
     </div>
 
-    <script>
+    <div class="digital"></div>
 
-        function updateClock(clockId, timeZone){
+    <div class="date"></div>
 
-            const clock = document.getElementById(clockId);
+    <div class="status"></div>
 
-            const now = new Date();
+    `;
 
-            const localTime =
-            new Date(
-                now.toLocaleString("en-US", {
-                    timeZone: timeZone
-                })
-            );
+    container.appendChild(card);
 
-            const seconds = localTime.getSeconds();
+});
 
-            const minutes = localTime.getMinutes();
+/* UPDATE CLOCKS */
 
-            const hours = localTime.getHours();
+function updateClocks(){
 
-            // HANDS
+    clocks.forEach((clockData,index)=>{
 
-            const hourHand =
-            clock.querySelector(".hour");
+        const card =
+        document.querySelectorAll(".clock-card")[index];
 
-            const minuteHand =
-            clock.querySelector(".minute");
+        const clock =
+        document.getElementById(`clock${index}`);
 
-            const secondHand =
-            clock.querySelector(".second");
+        const now = new Date();
 
-            // ANGLES
+        const localTime =
+        new Date(
+            now.toLocaleString(
+                "en-US",
+                {
+                    timeZone:
+                    clockData.zone
+                }
+            )
+        );
 
-            const secondDeg = seconds * 6;
+        const hours =
+        localTime.getHours();
 
-            const minuteDeg =
-            minutes * 6 + seconds * 0.1;
+        const minutes =
+        localTime.getMinutes();
 
-            const hourDeg =
-            (hours % 12) * 30 +
-            minutes * 0.5;
+        const seconds =
+        localTime.getSeconds();
 
-            // ROTATION
+        /* HANDS */
 
-            hourHand.style.transform =
-            `translateX(-50%) rotate(${hourDeg}deg)`;
+        const hourHand =
+        clock.querySelector(".hour");
 
-            minuteHand.style.transform =
-            `translateX(-50%) rotate(${minuteDeg}deg)`;
+        const minuteHand =
+        clock.querySelector(".minute");
 
-            secondHand.style.transform =
-            `translateX(-50%) rotate(${secondDeg}deg)`;
+        const secondHand =
+        clock.querySelector(".second");
 
-            // DIGITAL CLOCK
+        /* DEGREES */
 
-            const digital =
-            clock.parentElement.querySelector(".digital");
+        const hourDeg =
+        (hours % 12) * 30 +
+        minutes * 0.5;
 
-            digital.innerHTML =
-            localTime.toLocaleTimeString();
+        const minuteDeg =
+        minutes * 6 +
+        seconds * 0.1;
 
+        const secondDeg =
+        seconds * 6;
+
+        /* ROTATE */
+
+        hourHand.style.transform =
+        `translateX(-50%) rotate(${hourDeg}deg)`;
+
+        minuteHand.style.transform =
+        `translateX(-50%) rotate(${minuteDeg}deg)`;
+
+        secondHand.style.transform =
+        `translateX(-50%) rotate(${secondDeg}deg)`;
+
+        /* DIGITAL */
+
+        const digital =
+        card.querySelector(".digital");
+
+        digital.innerHTML =
+        localTime.toLocaleTimeString();
+
+        /* DATE */
+
+        const date =
+        card.querySelector(".date");
+
+        date.innerHTML =
+        localTime.toDateString();
+
+        /* AM PM */
+
+        const status =
+        card.querySelector(".status");
+
+        const isAM =
+        hours < 12;
+
+        status.innerHTML =
+        isAM
+        ? "☀️ DAY TIME"
+        : "🌙 NIGHT TIME";
+
+        status.className =
+        `status ${isAM ? "am" : "pm"}`;
+
+        /* DAY NIGHT STYLE */
+
+        if(isAM){
+
+            card.classList.add("day");
+            card.classList.remove("night");
+
+        }else{
+
+            card.classList.add("night");
+            card.classList.remove("day");
         }
 
-        function runClocks(){
+    });
 
-            updateClock(
-                "clock1",
-                "America/Toronto"
-            );
+}
 
-            updateClock(
-                "clock2",
-                "Europe/Paris"
-            );
+/* START */
 
-            updateClock(
-                "clock3",
-                "Asia/Kolkata"
-            );
+updateClocks();
 
-            updateClock(
-                "clock4",
-                "Asia/Tokyo"
-            );
-        }
+setInterval(updateClocks,1000);
 
-        // Start
-
-        runClocks();
-
-        // Update every second
-
-        setInterval(runClocks, 1000);
-
-    </script>
+</script>
 
 </body>
 </html>

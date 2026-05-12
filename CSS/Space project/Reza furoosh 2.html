@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Fatech Shop</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family:Arial;
+    text-align:center;
+    color:white;
+    background: linear-gradient(-45deg, red, orange, yellow);
+    background-size:400% 400%;
+    animation:bg 10s ease infinite;
+}
+
+@keyframes bg{
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+
+/* TOP TEXT */
+.topText{
+    position:fixed;
+    top:10px;
+    left:-300px;
+    white-space:nowrap;
+    font-weight:bold;
+    animation:move 10s linear infinite;
+}
+
+@keyframes move{
+    0%{left:-300px}
+    100%{left:110%}
+}
+
+/* SEARCH */
+#search{
+    margin-top:60px;
+    padding:10px;
+    width:250px;
+}
+
+/* PRODUCTS */
+.shop{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    margin-top:20px;
+}
+
+.box{
+    background:white;
+    color:black;
+    width:150px;
+    padding:10px;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+.box img{width:100px}
+
+/* CART */
+.cart{
+    width:85%;
+    margin:20px auto;
+    background:white;
+    color:black;
+    padding:10px;
+}
+
+.item{
+    display:flex;
+    justify-content:space-between;
+    border-bottom:1px solid #ddd;
+    padding:5px;
+}
+
+#total{
+    font-weight:bold;
+    margin-top:10px;
+}
+
+/* POPUP */
+#popup{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.8);
+    justify-content:center;
+    align-items:center;
+}
+
+#panel{
+    background:white;
+    color:black;
+    padding:20px;
+    border-radius:10px;
+}
+
+#panel img{
+    width:150px;
+}
+
+/* BUTTONS */
+button{
+    padding:6px;
+    margin:2px;
+    background:black;
+    color:white;
+    border:none;
+    cursor:pointer;
+}
+
+button:hover{background:blue}
+
+/* BOTTOM */
+.bottomText{
+    position:fixed;
+    bottom:0;
+    width:100%;
+    background:black;
+    overflow:hidden;
+}
+
+.bottomText span{
+    display:inline-block;
+    white-space:nowrap;
+    padding-left:100%;
+    animation:scroll 10s linear infinite;
+}
+
+@keyframes scroll{
+    0%{transform:translateX(0)}
+    100%{transform:translateX(-100%)}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="topText">Welcome to Fatech Electronic Shop</div>
+
+<h1>Fatech Shop</h1>
+
+<input id="search" placeholder="Search..." onkeyup="search()">
+
+<!-- PRODUCTS -->
+<div class="shop">
+
+<div class="box" onclick="openProduct('Bess')">
+<img src="https://tse1.mm.bing.net/th/id/OIP.79LX2gp4Cps1SXJdjJdgoAHaHa">
+<p>Bess</p>
+</div>
+
+<div class="box" onclick="openProduct('UPS')">
+<img src="https://powersolutions.com.my/wp-content/uploads/2019/06/All-series-600x493.jpg">
+<p>UPS</p>
+</div>
+
+<div class="box" onclick="openProduct('Solar')">
+<img src="https://tse3.mm.bing.net/th/id/OIP.sx3Ro1rZnjVlLpbjF1cjwgHaE6">
+<p>Solar Panel</p>
+</div>
+
+</div>
+
+<!-- CART -->
+<div class="cart">
+<h2>Cart 🛒</h2>
+<div id="cartList"></div>
+<div id="total">Total: $0</div>
+</div>
+
+<!-- POPUP -->
+<div id="popup">
+<div id="panel">
+
+<h2 id="name"></h2>
+<h3 id="priceText"></h3>
+
+<img id="img">
+
+<br><br>
+
+<div id="options"></div>
+
+<br>
+
+<button onclick="buy()">BUY</button>
+<button onclick="closePopup()">Close</button>
+
+</div>
+</div>
+
+<div class="bottomText">
+<span>Fatech Electronic — Best Quality Products</span>
+</div>
+
+<script>
+
+let currentName="";
+let selectedOption="";
+let selectedPrice=0;
+let total=0;
+let currentImages=[];
+
+/* 🔥 EACH OPTION HAS ITS OWN IMAGE (YOU WILL REPLACE LATER) */
+const data={
+    Bess:{
+        price:25,
+        options:["Ottomans and Benches","Dining Table","Console","Coffee Table"],
+        images:[
+            "IMG_BENCH_OTTOMAN",
+            "IMG_DINING",
+            "IMG_CONSOLE",
+            "IMG_COFFEE"
+        ]
+    },
+    UPS:{
+        price:30,
+        options:["Mini UPS","Interactive UPS","Online UPS","Industrial UPS"],
+        images:[
+            "IMG_MINI_UPS",
+            "IMG_INTERACTIVE",
+            "IMG_ONLINE",
+            "IMG_INDUSTRIAL"
+        ]
+    },
+    Solar:{
+        price:40,
+        options:["Flexible Panel","Glass Panel","High Efficiency Panel"],
+        images:[
+            "IMG_FLEX",
+            "IMG_GLASS",
+            "IMG_HIGH"
+        ]
+    }
+};
+
+/* OPEN PRODUCT */
+function openProduct(name){
+
+    currentName=name;
+
+    document.getElementById("popup").style.display="flex";
+    document.getElementById("name").innerText=name;
+
+    let obj=data[name];
+
+    selectedPrice=obj.price;
+    document.getElementById("priceText").innerText="Price: $"+obj.price;
+
+    currentImages=obj.images;
+
+    document.getElementById("img").src=obj.images[0];
+
+    let box=document.getElementById("options");
+    box.innerHTML="";
+
+    obj.options.forEach((opt,index)=>{
+        let btn=document.createElement("button");
+        btn.innerText=opt;
+
+        btn.onclick=()=>{
+            selectedOption=opt;
+            changeImage(index);
+        };
+
+        box.appendChild(btn);
+    });
+}
+
+/* CHANGE IMAGE */
+function changeImage(index){
+    document.getElementById("img").src=currentImages[index];
+}
+
+/* CLOSE */
+function closePopup(){
+    document.getElementById("popup").style.display="none";
+}
+
+/* BUY */
+function buy(){
+
+    if(!selectedOption){
+        alert("Please select an option!");
+        return;
+    }
+
+    let cart=document.getElementById("cartList");
+
+    let div=document.createElement("div");
+    div.className="item";
+
+    div.innerHTML=`
+        <span>${currentName} - ${selectedOption} - $${selectedPrice}</span>
+        <button onclick="this.parentElement.remove()">X</button>
+    `;
+
+    cart.appendChild(div);
+
+    total += selectedPrice;
+    document.getElementById("total").innerText="Total: $"+total;
+
+    closePopup();
+}
+
+/* SEARCH */
+function search(){
+    let input=document.getElementById("search").value.toLowerCase();
+    let boxes=document.querySelectorAll(".box");
+
+    boxes.forEach(b=>{
+        b.style.display=b.innerText.toLowerCase().includes(input)?"":"none";
+    });
+}
+
+</script>
+
+</body>
+</html>

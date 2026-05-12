@@ -6,16 +6,21 @@
     <title>Document</title>
 </head>
 <body>
-   <h3>Add your To do List here</h3> 
-   <form id="myForm">
+   <h3>Add your To do List here</h3>
+    <form id="myForm">
     <input id="myInput" type="text">
     <button> Add </button>
-   </form>
+    </form>
 
+    <form id="parham">
+        <input id="myInput1" type="text1">
+        <button> remove </button>
+    </form>
+ 
    <h3>To Do List</h3>
    <ul id="myItem"></ul>
    <script>
-    var myForm = document.getElementById("myForm");
+    var myForm = document.getElementById("myForm"); 
     var myInput = document.getElementById("myInput");   
     var myItem = document.getElementById("myItem");   
     myForm.addEventListener("submit", function(event){
