@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stopwatch</title> <!-- FIX: better title -->
+</head>
+<body>
+    <div class="wrapper">
+        <h1>Stopwatch</h1>
+
+        <!-- FIX 1: broken span structure -->
+        <p>
+            <span id="seconds">00</span>:
+            <span id="milliseconds">00</span>
+        </p>
+
+        <button id="button-start">Start</button>
+        <button id="button-stop">Stop</button>
+        <button id="button-reset">Reset</button>    
+    </div>
+
+    <script>
+        // FIX 2: "Window" must be lowercase "window"
+        window.onload = function () {
+
+            // FIX 3: use numbers, not strings for counters
+            var seconds = 0;
+            var milliseconds = 0;
+
+            // FIX 4: correct variable names (was appendMilliSeconds mismatch)
+            var appendMilliseconds = document.getElementById("milliseconds");
+            var appendSeconds = document.getElementById("seconds"); 
+            // FIX 5: getElementById needs STRING, not variable
+
+            var buttonStart = document.getElementById("button-start"); 
+            // FIX 6: wrong syntax button=-start → must be string id
+
+            var buttonStop = document.getElementById("button-stop"); 
+            // FIX 7: id mismatch (was button_stop)
+
+            var buttonReset = document.getElementById("button-reset");
+
+            var Interval; // will hold setInterval
+
+            // START BUTTON
+            buttonStart.onclick = function () {
+
+                clearInterval(Interval); // avoid multiple intervals stacking
+
+                // FIX 8: start interval properly
+                Interval = setInterval(startTimer, 10);
+            };
+
+            // STOP BUTTON
+            buttonStop.onclick = function () {
+                clearInterval(Interval);
+            };
+
+            // RESET BUTTON
+            buttonReset.onclick = function () {
+                clearInterval(Interval);
+                milliseconds = 0;
+                seconds = 0;
+                appendMilliseconds.innerHTML = "00";
+                appendSeconds.innerHTML = "00";
+            };
+
+            function startTimer() {
+                milliseconds++;
+
+                // FIX 9: correct formatting logic
+                if (milliseconds <= 9) {
+                    appendMilliseconds.innerHTML = "0" + milliseconds;
+                } else {
+                    appendMilliseconds.innerHTML = milliseconds;
+                }
+
+                // FIX 10: rollover condition
+                if (milliseconds > 99) {
+                    seconds++;
+                    milliseconds = 0;
+
+                    appendSeconds.innerHTML = seconds;
+
+                    appendMilliseconds.innerHTML = "00";
+                }
+
+                // FIX 11: optional formatting for seconds
+                if (seconds <= 9) {
+                    appendSeconds.innerHTML = "0" + seconds;
+                } else {
+                    appendSeconds.innerHTML = seconds;
+                }
+            }
+        };
+    </script>
+</body>
+</html>
