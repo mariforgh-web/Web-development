@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Dice Arcade</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    background: radial-gradient(circle, #1f1c2c, #928dab);
+    color: white;
+    text-align: center;
+    overflow: hidden;
+}
+
+h1 {
+    margin-top: 20px;
+}
+
+#gameBox {
+    margin-top: 40px;
+}
+
+#dice {
+    font-size: 180px;
+    margin: 20px;
+    transition: 0.2s;
+}
+
+.shake {
+    animation: shake 0.3s;
+}
+
+@keyframes shake {
+    0% { transform: translate(0); }
+    25% { transform: translate(-10px); }
+    50% { transform: translate(10px); }
+    75% { transform: translate(-10px); }
+    100% { transform: translate(0); }
+}
+
+button {
+    padding: 12px 25px;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+#mission {
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+#coins, #level {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+#message {
+    font-size: 22px;
+    margin-top: 20px;
+    height: 30px;
+}
+
+.glow {
+    text-shadow: 0 0 10px yellow, 0 0 20px orange;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🎲 DICE ARCADE</h1>
+
+<div id="level">Level: 1</div>
+<div id="coins">Coins: 0 💰</div>
+
+<div id="gameBox">
+
+<div id="mission">Mission: Roll a 6</div>
+
+<div id="dice">🎲</div>
+
+<button onclick="roll()">ROLL</button>
+
+<div id="message"></div>
+
+</div>
+
+<script>
+const dices = ['⚀','⚁','⚂','⚃','⚄','⚅'];
+
+let coins = 0;
+let level = 1;
+let currentMission = 5; // must roll 6 (index 5)
+
+function newMission() {
+    currentMission = Math.floor(Math.random() * 6);
+    document.getElementById("mission").innerHTML =
+        "Mission: Roll " + dices[currentMission];
+}
+
+function roll() {
+    let dice = document.getElementById("dice");
+    let msg = document.getElementById("message");
+
+    // animation effect
+    dice.classList.add("shake");
+
+    setTimeout(() => {
+        dice.classList.remove("shake");
+
+        let result = Math.floor(Math.random() * 6);
+        dice.innerHTML = dices[result];
+
+        // WIN condition
+        if (result === currentMission) {
+            coins += level * 10;
+            msg.innerHTML = "🔥 PERFECT! +Coins earned!";
+            dice.classList.add("glow");
+
+            setTimeout(() => dice.classList.remove("glow"), 500);
+        } 
+        else {
+            msg.innerHTML = "❌ Try again!";
+            coins = Math.max(0, coins - 2);
+        }
+
+        updateGame();
+
+    }, 300);
+}
+
+function updateGame() {
+    document.getElementById("coins").innerHTML = "Coins: " + coins + " 💰";
+
+    // LEVEL UP system
+    if (coins >= level * 50) {
+        level++;
+        document.getElementById("level").innerHTML = "Level: " + level;
+        document.getElementById("message").innerHTML = "🏆 LEVEL UP!";
+        newMission();
+    }
+}
+
+// start game
+newMission();
+</script>
+
+</body>
+</html>
