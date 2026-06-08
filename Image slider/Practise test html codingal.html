@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chinese Cuisine</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:"Lato", sans-serif;
+    line-height:1.8;
+    background-color:#b6f8ef;
+    color:#666;
+}
+
+/* Navigation Bar */
+.topnav{
+    background-color:#333;
+    text-align:center;
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+.topnav a{
+    display:inline-block;
+    color:#1affa3;
+    text-decoration:none;
+    padding:15px 20px;
+    transition:0.3s;
+    font-weight:bold;
+}
+
+.topnav a:hover,
+.topnav a.active{
+    background-color:#111;
+    color:white;
+}
+
+/* Parallax Images */
+.pimg1,
+.pimg2,
+.pimg3{
+    position:relative;
+    opacity:0.85;
+    background-position:center;
+    background-size:cover;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+}
+
+.pimg1{
+    background-image:url("image1.jpg");
+    min-height:100vh;
+}
+
+.pimg2{
+    background-image:url("image2.jpg");
+    min-height:400px;
+}
+
+.pimg3{
+    background-image:url("image3.jpg");
+    min-height:400px;
+}
+
+/* Text Over Images */
+.ptext{
+    position:absolute;
+    top:50%;
+    width:100%;
+    text-align:center;
+    transform:translateY(-50%);
+}
+
+.ptext .border{
+    background:rgba(0,0,0,0.75);
+    color:white;
+    padding:20px;
+    font-size:28px;
+    letter-spacing:5px;
+    text-transform:uppercase;
+    border-radius:5px;
+}
+
+.ptext .border.trans{
+    background:rgba(0,0,0,0.5);
+    font-size:18px;
+}
+
+/* Sections */
+.section{
+    text-align:center;
+    padding:60px 80px;
+}
+
+.section-light{
+    background-color:#f4f4f4;
+    color:#666;
+}
+
+.section-dark{
+    background-color:#282e34;
+    color:#ddd;
+}
+
+.section h2{
+    margin-bottom:20px;
+    font-size:32px;
+}
+
+.section p{
+    max-width:1000px;
+    margin:auto;
+}
+
+/* Gallery */
+.gallery-container{
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    flex-wrap:wrap;
+    margin-top:30px;
+}
+
+.gallery-item{
+    text-align:center;
+}
+
+.gallery-item img{
+    width:300px;
+    height:220px;
+    object-fit:cover;
+    border-radius:10px;
+    border:3px solid white;
+    transition:0.3s;
+}
+
+.gallery-item img:hover{
+    transform:scale(1.05);
+}
+
+.gallery-item p{
+    margin-top:10px;
+    color:white;
+    font-weight:bold;
+}
+
+/* Contact Form */
+.contact-form{
+    max-width:600px;
+    margin:30px auto 0;
+}
+
+.contact-form input,
+.contact-form textarea{
+    width:100%;
+    padding:12px;
+    margin-bottom:15px;
+    border:none;
+    border-radius:5px;
+    font-size:16px;
+}
+
+.contact-form button{
+    background:#1affa3;
+    color:black;
+    border:none;
+    padding:12px 25px;
+    border-radius:5px;
+    cursor:pointer;
+    font-size:16px;
+    font-weight:bold;
+}
+
+.contact-form button:hover{
+    background:#00cc88;
+}
+
+/* Footer */
+.footer{
+    background:#111;
+    color:white;
+    text-align:center;
+    padding:25px;
+}
+
+.footer p{
+    margin:5px 0;
+}
+
+/* Mobile Devices */
+@media(max-width:768px){
+
+    .section{
+        padding:40px 20px;
+    }
+
+    .pimg1,
+    .pimg2,
+    .pimg3{
+        background-attachment:scroll;
+    }
+
+    .gallery-item img{
+        width:100%;
+        max-width:350px;
+    }
+
+    .ptext .border{
+        font-size:20px;
+        padding:15px;
+    }
+
+    .ptext .border.trans{
+        font-size:14px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Navigation -->
+<div class="topnav">
+    <a href="#home" class="active">Home</a>
+    <a href="#about">About Me</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#contact">Contact Us</a>
+</div>
+
+<!-- Home -->
+<div class="pimg1" id="home">
+    <div class="ptext">
+        <span class="border">Chinese Cuisine</span>
+        <br><br>
+        <span class="border trans">Food • Culture • Tradition</span>
+    </div>
+</div>
+
+<!-- Welcome -->
+<section class="section section-light">
+    <h2>Welcome</h2>
+
+    <p>
+        Welcome to my website dedicated to Chinese cuisine. Chinese food is one
+        of the world's most popular and influential cuisines, known for its rich
+        flavors, fresh ingredients, and centuries of culinary tradition.
+        Explore the history, culture, and delicious dishes that make Chinese
+        cuisine unique and loved around the globe.
+    </p>
+</section>
+
+<!-- About -->
+<section class="section section-dark" id="about">
+    <h2>About Me</h2>
+
+    <p>
+        Hello! My name is Swati Singh. I created this website to share
+        information about Chinese cuisine and its impact on food culture
+        worldwide. Through this website, visitors can learn about traditional
+        dishes, cooking techniques, and the cultural importance of food in
+        Chinese society.
+    </p>
+
+    <br>
+
+    <p>
+        My goal is to introduce people to the history, traditions, and flavors
+        of Chinese cuisine through an engaging and informative online
+        experience.
+    </p>
+</section>
+
+<!-- Image Section -->
+<div class="pimg2">
+    <div class="ptext">
+        <span class="border trans">Traditional Chinese Dishes</span>
+    </div>
+</div>
+
+<!-- Chinese Cuisine Info -->
+<section class="section section-light">
+    <h2>Chinese Cuisine</h2>
+
+    <p>
+        Chinese cuisine is an important part of Chinese culture and includes
+        many regional styles such as Cantonese, Sichuan, Hunan, and Jiangsu
+        cuisine. Popular dishes include noodles, dumplings, fried rice, spring
+        rolls, tofu dishes, hot pot, and Peking duck. Chinese cooking often
+        focuses on balancing flavors, colors, textures, and aromas to create
+        delicious and memorable meals.
+    </p>
+</section>
+
+<!-- Gallery -->
+<section class="section section-dark" id="gallery">
+    <h2>Gallery</h2>
+
+    <p>
+        Explore some examples of Chinese cuisine and traditional food culture.
+    </p>
+
+    <div class="gallery-container">
+
+        <div class="gallery-item">
+            <img src="https://tse3.mm.bing.net/th/id/OIP.FifUVslf-pkK6bOOwZN1pgHaFj?pid=Api&P=0&h=220" alt="Chinese Cuisine Image 1">
+            <p>Traditional Chinese Cuisine</p>
+        </div>
+
+        <div class="gallery-item">
+            <img src="https://tse2.mm.bing.net/th/id/OIP.hQkQ7rEoMmXN3tbclBB7pAHaJ2?pid=Api&P=0&h=220" alt="Chinese Cuisine Image 2">
+            <p>Popular Noodle Dishes</p>
+        </div>
+
+        <div class="gallery-item">
+            <img src="https://tse2.mm.bing.net/th/id/OIP.mZazpgIargbRyBfzHnOXkwHaEk?pid=Api&P=0&h=220" alt="Chinese Cuisine Image 3">
+            <p>Classic Chinese Specialties</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- Image Section -->
+<div class="pimg3">
+    <div class="ptext">
+        <span class="border trans">Food & Culture</span>
+    </div>
+</div>
+
+<!-- Contact -->
+<section class="section section-dark" id="contact">
+    <h2>Contact Us</h2>
+
+    <p>Email: chinesecuisine@gmail.com</p>
+    <p>Phone: +1 (905) 555-1234</p>
+
+    <div class="contact-form">
+        <form>
+            <input type="text" placeholder="Your Name" required>
+
+            <input type="email" placeholder="Your Email" required>
+
+            <textarea rows="5" placeholder="Your Message" required></textarea>
+
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <p>&copy; 2026 All Rights Reserved by Swati Singh</p>
+    <p>Exploring the Rich Traditions of Chinese Cuisine</p>
+</footer>
+
+</body>
+</html>

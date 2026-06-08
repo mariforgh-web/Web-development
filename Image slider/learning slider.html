@@ -51,7 +51,7 @@
         // Move to next image
         function nextSlide(){
             index = (index + 1) % totalSlides;
-          //index = (1 + 1) % totalslides;
+          index = (0 + 1) % totalSlides;
         // Shift images horizontally
         slides.style.transform = `translateX(-${index * 400}px)`;
         }
